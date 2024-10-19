@@ -1,14 +1,19 @@
 
 import 'package:feature_first/common/widgets/buttons/primary_buttons.dart';
+import 'package:feature_first/features/service_book/mechanic_list_screen.dart';
 import 'package:feature_first/utils/utils.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class DashboardAppBar extends HookConsumerWidget implements PreferredSizeWidget {
   final bool? showActionButton;
   final bool? isNotificationButton;
-  const DashboardAppBar(
-      {super.key, this.showActionButton, this.isNotificationButton});
+  const DashboardAppBar({
+    super.key,
+    this.showActionButton,
+    this.isNotificationButton
+  });
 
   @override
   // TODO: implement preferredSize
@@ -23,7 +28,7 @@ class DashboardAppBar extends HookConsumerWidget implements PreferredSizeWidget 
       child: SafeArea(
         child: Row(
           children: [
-            CircleAvatar(
+            const CircleAvatar(
               child: Icon(Icons.account_circle_rounded),
             ),
         
@@ -59,7 +64,7 @@ class DashboardAppBar extends HookConsumerWidget implements PreferredSizeWidget 
                   title: "Book Now",
                   backgroundColor: ColorPalates.defaultWhite,
                   titleColor: ColorPalates.secondaryColor,
-                  onPressed: (){}
+                  onPressed: ()=> Navigator.push(context,CupertinoPageRoute(builder: (context)=> const MechanicListScreen()))
               ),
             )
           ],
