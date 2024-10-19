@@ -13,7 +13,7 @@ class LogoWidget extends StatelessWidget {
           "assets/images/app_logo.png",
           fit: BoxFit.cover,
           width: width.w,
-          //height: 25.h,
+          height: 50.h,
         ));
   }
 }
