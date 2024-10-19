@@ -15,7 +15,7 @@ void main() async {
   await Hive.openBox(KeyLocalDatabase.databaseName);
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: ColorPalates.statusBarColor,
-      statusBarIconBrightness: Brightness.dark));
+      statusBarIconBrightness: Brightness.light));
   runApp(
       const ProviderScope(
           child: CarWorkshop()
