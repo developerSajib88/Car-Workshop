@@ -2,6 +2,8 @@ import 'package:feature_first/common/widgets/buttons/primary_buttons.dart';
 import 'package:feature_first/common/widgets/components/auth_background.dart';
 import 'package:feature_first/common/widgets/logo_widget.dart';
 import 'package:feature_first/common/widgets/text_form_fields/primary_text_form_fields.dart';
+import 'package:feature_first/features/dashboard/dashboard_screen.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -103,7 +105,7 @@ class UserRegistrationScreen extends HookConsumerWidget {
 
                   PrimaryButton(
                       title: "Sign Up",
-                      onPressed: (){}
+                      onPressed: ()=> Navigator.push(context,CupertinoPageRoute(builder: (context)=> const DashboardScreen()))
                   ),
 
 
