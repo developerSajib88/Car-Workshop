@@ -33,15 +33,24 @@ class MechanicItemView extends StatelessWidget {
             crossAxisAlignment: crossStart,
             mainAxisAlignment: mainCenter,
             children: [
+
+
               Text(
-                "Name: Sajib Hasan",
+                "Sajib Hasan",
                 style: CustomTextStyles.primaryTextStylesBold,
               ),
 
               Text(
                 "Email: developersajib88@gmail.com",
                 style: CustomTextStyles.descriptionTextStyles,
-              )
+              ),
+
+
+              Text(
+                "Mechanic ID: 230943",
+                style: CustomTextStyles.descriptionTextStyles,
+              ),
+
 
             ],
           ),
