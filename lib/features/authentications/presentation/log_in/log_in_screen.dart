@@ -2,6 +2,7 @@ import 'package:feature_first/common/widgets/buttons/primary_buttons.dart';
 import 'package:feature_first/common/widgets/components/auth_background.dart';
 import 'package:feature_first/common/widgets/logo_widget.dart';
 import 'package:feature_first/common/widgets/text_form_fields/primary_text_form_fields.dart';
+import 'package:feature_first/features/authentications/presentation/user_registration/user_registration_screen.dart';
 import 'package:feature_first/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -57,7 +58,7 @@ class LogInScreen extends StatelessWidget {
 
                 PrimaryButton(
                     title: "Sign In",
-                    onPressed: ()=> Navigator.push(context,CupertinoPageRoute(builder: (context)=> LogInScreen()))
+                    onPressed: ()=> Navigator.push(context,CupertinoPageRoute(builder: (context)=> UserRegistrationScreen()))
                 ),
 
                 gap6,
