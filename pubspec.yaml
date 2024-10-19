@@ -1,0 +1,109 @@
+name: feature_first
+description: "A new Flutter project."
+
+
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.4.3 <4.0.0'
+
+
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.6
+
+  # Responsive design
+  flutter_screenutil: ^5.9.0
+
+  # State management
+  hooks_riverpod: ^2.5.1
+
+  # Object Comparing
+  equatable: ^2.0.5
+
+  # Routing Management
+  go_router: ^14.2.0
+
+  # Dependency Injection
+  get_it: ^7.7.0
+
+  # API Client
+  http: ^1.2.0
+
+  # Local database
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+
+  # Firebase
+  firebase_core: ^3.1.1
+  firebase_messaging: ^15.0.2
+
+  # Push Notification
+  awesome_notifications: any
+
+  # Loading/Shimmer Animation
+  skeletonizer: ^1.1.1
+
+  # Animation
+  flutter_animate: ^4.5.0
+
+  # Custom Fonts
+  google_fonts: ^6.2.1
+
+  # Spacing
+  gap: ^3.0.1
+
+  # Internet connection checking
+  internet_connection_checker: ^1.0.0+1
+
+  # OTP form fields
+  pinput: ^5.0.0
+
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+
+flutter:
+#  assets:
+#    - assets/icons
+#    - assets/images
+
+  uses-material-design: true
+
+  
+  
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
