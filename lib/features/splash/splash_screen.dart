@@ -5,7 +5,6 @@ import 'package:feature_first/features/authentications/presentation/log_in/log_i
 import 'package:feature_first/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SplashScreen extends StatelessWidget {
   static String get path => "/splashScreen";

@@ -1,7 +1,4 @@
-import 'package:feature_first/app/app.dart';
 import 'package:feature_first/common/widgets/components/image_background.dart';
-import 'package:feature_first/utils/styles/color_palates.dart';
-import 'package:feature_first/utils/styles/custom_text_styles.dart';
 import 'package:feature_first/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';

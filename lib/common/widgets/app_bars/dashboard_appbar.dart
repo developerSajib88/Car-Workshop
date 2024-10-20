@@ -1,6 +1,6 @@
 
 import 'package:feature_first/common/widgets/buttons/primary_buttons.dart';
-import 'package:feature_first/features/book_services/mechanic_list_screen.dart';
+import 'package:feature_first/features/admin/book_services/mechanic_list_screen.dart';
 import 'package:feature_first/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
