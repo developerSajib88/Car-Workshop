@@ -2,9 +2,11 @@ import 'package:feature_first/common/widgets/buttons/primary_buttons.dart';
 import 'package:feature_first/common/widgets/components/image_background.dart';
 import 'package:feature_first/common/widgets/logo_widget.dart';
 import 'package:feature_first/features/authentications/presentation/log_in/log_in_screen.dart';
+import 'package:feature_first/features/common/booking_job_details/booking_job_details_screen.dart';
 import 'package:feature_first/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 class SplashScreen extends StatelessWidget {
   static String get path => "/splashScreen";
@@ -23,19 +25,26 @@ class SplashScreen extends StatelessWidget {
 
               const LogoWidget(),
 
+              gap12,
 
               Text(
                 "Welcome to AutoCare",
                 style: CustomTextStyles.titleTextStyles,
               ),
 
-              gap4,
-
               Text(
                 "Your trusted platform for car service bookings and management.",
                 style: CustomTextStyles.primaryTextStyles,
                 textAlign: TextAlign.center,
               ),
+
+              const Spacer(),
+
+              Image.asset(
+                "assets/images/red_car.png",
+                width: 200.w,
+              ).animate().slideX(),
+
 
 
               const Spacer(),
