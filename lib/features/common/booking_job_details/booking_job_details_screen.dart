@@ -3,8 +3,8 @@ import 'package:feature_first/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
-class BookingDetailsScreen extends StatelessWidget {
-  const BookingDetailsScreen({super.key});
+class BookingJobDetailsScreen extends StatelessWidget {
+  const BookingJobDetailsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

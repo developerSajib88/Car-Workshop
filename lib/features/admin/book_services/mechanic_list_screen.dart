@@ -1,5 +1,5 @@
 import 'package:feature_first/common/widgets/buttons/widget_bounce.dart';
-import 'package:feature_first/common/widgets/components/mechanic_item_view.dart';
+import 'package:feature_first/common/widgets/components/item_view/mechanic_item_view.dart';
 import 'package:feature_first/features/admin/book_services/book_service_screen.dart';
 import 'package:feature_first/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
