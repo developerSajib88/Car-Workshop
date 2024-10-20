@@ -1,9 +1,9 @@
 import 'package:feature_first/utils/utils.dart';
 import 'package:flutter/material.dart';
 
-class AuthBackground extends StatelessWidget {
+class ImageBackground extends StatelessWidget {
   final Widget? child;
-  const AuthBackground({
+  const ImageBackground({
     super.key,
     this.child
   });
@@ -24,7 +24,7 @@ class AuthBackground extends StatelessWidget {
           Container(
             width: 1.sw,
             height: 1.sh,
-            color: Colors.white.withOpacity(0.8),
+            color: Colors.white.withOpacity(0.9),
             padding: padding12,
             child: child,
           ),

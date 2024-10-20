@@ -1,5 +1,5 @@
 import 'package:feature_first/common/widgets/buttons/primary_buttons.dart';
-import 'package:feature_first/common/widgets/components/auth_background.dart';
+import 'package:feature_first/common/widgets/components/image_background.dart';
 import 'package:feature_first/common/widgets/logo_widget.dart';
 import 'package:feature_first/features/authentications/presentation/log_in/log_in_screen.dart';
 import 'package:feature_first/utils/utils.dart';
@@ -15,7 +15,7 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: AuthBackground(
+      body: ImageBackground(
           child: Column(
             crossAxisAlignment: crossCenter,
             mainAxisAlignment: mainCenter,

@@ -1,5 +1,5 @@
 import 'package:feature_first/common/widgets/buttons/primary_buttons.dart';
-import 'package:feature_first/common/widgets/components/auth_background.dart';
+import 'package:feature_first/common/widgets/components/image_background.dart';
 import 'package:feature_first/common/widgets/logo_widget.dart';
 import 'package:feature_first/common/widgets/text_form_fields/primary_text_form_fields.dart';
 import 'package:feature_first/features/authentications/presentation/user_registration/user_registration_screen.dart';
@@ -13,7 +13,7 @@ class LogInScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: AuthBackground(
+      body: ImageBackground(
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: crossCenter,
