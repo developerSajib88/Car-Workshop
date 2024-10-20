@@ -36,7 +36,12 @@ class MechanicItemView extends StatelessWidget {
 
 
               Text(
-                "Sajib Hasan",
+                "Mechanic ID: 230943",
+                style: CustomTextStyles.descriptionTextStyles,
+              ),
+
+              Text(
+                "Mechanic: Sajib Hasan",
                 style: CustomTextStyles.primaryTextStylesBold,
               ),
 
@@ -44,13 +49,6 @@ class MechanicItemView extends StatelessWidget {
                 "Email: developersajib88@gmail.com",
                 style: CustomTextStyles.descriptionTextStyles,
               ),
-
-
-              Text(
-                "Mechanic ID: 230943",
-                style: CustomTextStyles.descriptionTextStyles,
-              ),
-
 
             ],
           ),
