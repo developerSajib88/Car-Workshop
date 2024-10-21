@@ -1,9 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:feature_first/common/global/functions/global_functions.dart';
 import 'package:feature_first/data/local_database/set_local_database.dart';
 import 'package:feature_first/features/authentications/applications/authentication_state.dart';
 import 'package:feature_first/features/authentications/domain/authentication_domain.dart';
-import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class AuthenticationStateNotifier extends StateNotifier<AuthenticationState>{

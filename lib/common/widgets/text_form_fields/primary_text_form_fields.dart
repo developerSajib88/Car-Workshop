@@ -68,8 +68,8 @@ class PrimaryTextFormFields extends StatelessWidget {
             onTap: onTap,
             controller: controller,
             readOnly: readOnly,
-            minLines: minLines,
-            maxLines: minLines != null ? minLines! + 1 : null,
+            minLines: minLines ?? 1,
+            maxLines: minLines ?? 1,
             keyboardType: textInputType,
             cursorColor: ColorPalates.primaryColor,
             obscureText: passwordVisibility ?? false,
@@ -90,7 +90,10 @@ class PrimaryTextFormFields extends StatelessWidget {
               )
                   : suffixIcon,
               hintText: hintText,
-              hintStyle: hintTextStyle,
+              hintStyle: TextStyle(
+                  fontSize: 7.sp,
+                  color: ColorPalates.customGrey
+              ),
               enabledBorder: fieldBorder,
               focusedBorder: fieldBorder,
               //errorBorder: fieldBorder,
