@@ -10,6 +10,8 @@ class GetLocalDatabase {
 
   bool? userRegister() => database.get(KeyLocalDatabase.userRegister);
 
+  String? userType() => database.get(KeyLocalDatabase.userType);
+
   String? userName() => database.get(KeyLocalDatabase.userName);
 
   String? userEmail() => database.get(KeyLocalDatabase.userEmail);

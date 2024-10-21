@@ -6,6 +6,8 @@ class KeyLocalDatabase {
 
   static String get userRegister => "userRegister";
 
+  static String get userType => "userType";
+
   static String get userName => "userName";
 
   static String get userEmail => "userEmail";

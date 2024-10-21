@@ -21,6 +21,8 @@ class SetLocalDatabase{
   void userRegister(bool value) =>
       storingData(KeyLocalDatabase.userRegister, value);
 
+  void userType(String value) => storingData(KeyLocalDatabase.userType, value);
+
   void userName(String value) => storingData(KeyLocalDatabase.userName, value);
 
   void userEmail(String value) =>
