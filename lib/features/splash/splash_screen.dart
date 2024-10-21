@@ -2,7 +2,6 @@ import 'package:feature_first/common/widgets/buttons/primary_buttons.dart';
 import 'package:feature_first/common/widgets/components/image_background.dart';
 import 'package:feature_first/common/widgets/logo_widget.dart';
 import 'package:feature_first/features/authentications/presentation/log_in/log_in_screen.dart';
-import 'package:feature_first/features/common/booking_job_details/booking_job_details_screen.dart';
 import 'package:feature_first/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
