@@ -18,7 +18,7 @@ class AuthenticationStateNotifier extends StateNotifier<AuthenticationState>{
     ));
   }
 
-  Future createUserAccount()async{
+  Future<bool> createUserAccount()async{
     stateMaker(state.copyWith(isLoading: true));
     Map<String,dynamic> body = {
       "user_id" : GlobalFunctions.generateRandomUserId(),
@@ -32,9 +32,11 @@ class AuthenticationStateNotifier extends StateNotifier<AuthenticationState>{
         SetLocalDatabase().userName(value.name);
         SetLocalDatabase().userEmail(value.email);
         SetLocalDatabase().userType(value.userType);
+        return true;
       }
     });
     stateMaker(state.copyWith(isLoading: false));
+    return false;
   }
 
 }
