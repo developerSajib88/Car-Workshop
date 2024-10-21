@@ -1,17 +1,30 @@
+import 'package:feature_first/common/global/validation/forms_validation.dart';
 import 'package:feature_first/common/widgets/buttons/primary_buttons.dart';
 import 'package:feature_first/common/widgets/components/image_background.dart';
 import 'package:feature_first/common/widgets/logo_widget.dart';
 import 'package:feature_first/common/widgets/text_form_fields/primary_text_form_fields.dart';
+import 'package:feature_first/core/dependency_injection/dependency_injection.dart';
 import 'package:feature_first/features/authentications/presentation/user_registration/user_registration_screen.dart';
 import 'package:feature_first/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
-class LogInScreen extends StatelessWidget {
+class LogInScreen extends HookConsumerWidget {
   const LogInScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+
+    final toWarn = useState<bool>(false);
+    final obSecurePassword = useState<bool>(false);
+
+    GlobalKey<FormState> formKey = GlobalKey<FormState>();
+    final authenticationState = ref.watch(authenticationProvider);
+    final authenticationCtrl = ref.watch(authenticationProvider.notifier);
+
+
     return Scaffold(
       body: ImageBackground(
           child: SingleChildScrollView(
@@ -40,25 +53,101 @@ class LogInScreen extends StatelessWidget {
                 ),
 
                 gap12,
+                
+                
+                Form(
+                  key: formKey,
+                  child: Column(
+                    crossAxisAlignment: crossStart,
+                    children: [
 
-                const PrimaryTextFormFields(
-                    title: "Email",
-                    hintText: "demo@gmail.com"
+                      PrimaryTextFormFields(
+                        isRequired: true,
+                        controller: authenticationState.emailController,
+                        title: "Email",
+                        hintText: "demo@gmail.com",
+                        validator: (value)=> FormValidation(
+                            validationType: ValidationType.email,
+                            formValue: value
+                        ).validate(),
+                      ),
+
+                      gap8,
+
+                      PrimaryTextFormFields(
+                        isRequired: true,
+                        controller: authenticationState.passwordController,
+                        title: "Password",
+                        hintText: "*******",
+                        passwordVisibility: obSecurePassword.value,
+                        suffixIconPressed: ()=> obSecurePassword.value = !obSecurePassword.value,
+                        showSuffixIcon: true,
+                        validator: (value)=> FormValidation(
+                            validationType: ValidationType.password,
+                            formValue: value
+                        ).validate(),
+                      ),
+
+                      gap8,
+
+                      Row(
+                        children: [
+                          Text("Registration as an Admin/Mechanic", style: CustomTextStyles.primaryTextStyles),
+                          Text("*", style: CustomTextStyles.primaryTextStyles.copyWith(color: ColorPalates.primaryColor)),
+                        ],
+                      ),
+
+                      Row(
+                        children: [
+                          RadioMenuButton(
+                            value: "Admin",
+                            groupValue: authenticationState.selectedUserType,
+                            style: ButtonStyle(
+                              padding: WidgetStatePropertyAll(padding0),
+                            ),
+                            onChanged: (value)=> authenticationCtrl.selectUserType(userType: value ?? "Admin"),
+                            child: Text(
+                              "Admin",
+                              style: TextStyle(
+                                  color: authenticationState.selectedUserType == null && toWarn.value ? ColorPalates.primaryColor : null
+                              ),
+                            ),
+                          ),
+
+                          gap6,
+
+                          RadioMenuButton(
+                            value: "Mechanic",
+                            groupValue: authenticationState.selectedUserType,
+                            style: ButtonStyle(
+                              padding: WidgetStatePropertyAll(padding0),
+                            ),
+                            onChanged: (value)=> authenticationCtrl.selectUserType(userType: value ?? "Mechanic"),
+                            child: Text(
+                              "Mechanic",
+                              style: TextStyle(
+                                  color: authenticationState.selectedUserType == null && toWarn.value
+                                      ? ColorPalates.primaryColor : null
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-
-                gap8,
-
-                const PrimaryTextFormFields(
-                    title: "Password",
-                    hintText: "*******",
-                    showSuffixIcon: true,
-                ),
-
+                
+                
                 gap16,
 
                 PrimaryButton(
                     title: "Sign In",
-                    onPressed: ()=> Navigator.push(context,CupertinoPageRoute(builder: (context)=> UserRegistrationScreen()))
+                    onPressed: (){
+                      toWarn.value = true;
+                      if(formKey.currentState!.validate() && authenticationState.selectedUserType != null){
+
+                      }
+                    }
                 ),
 
                 gap6,
@@ -73,7 +162,9 @@ class LogInScreen extends StatelessWidget {
                     ),
                     gap2,
                     InkWell(
-                        onTap: (){},
+                        onTap: ()=> Navigator.push(context,
+                            CupertinoPageRoute(builder: (context)=> const UserRegistrationScreen())
+                        ),
                         child: Text(
                           "Sign Up",
                           style: CustomTextStyles.buttonTextStyles

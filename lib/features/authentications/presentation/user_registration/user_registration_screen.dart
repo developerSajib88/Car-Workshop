@@ -23,8 +23,8 @@ class UserRegistrationScreen extends HookConsumerWidget {
     final obsecureConfirmPassword = useState<bool>(false);
 
     GlobalKey<FormState> formKey = GlobalKey<FormState>();
-    final authencationState = ref.watch(authenticationProvider);
-    final authencationCtrl = ref.watch(authenticationProvider.notifier);
+    final authenticationState = ref.watch(authenticationProvider);
+    final authenticationCtrl = ref.watch(authenticationProvider.notifier);
 
     return Scaffold(
         body: ImageBackground(
@@ -62,7 +62,7 @@ class UserRegistrationScreen extends HookConsumerWidget {
 
                         PrimaryTextFormFields(
                           isRequired: true,
-                          controller: authencationState.emailController,
+                          controller: authenticationState.emailController,
                           title: "Email",
                           hintText: "demo@gmail.com",
                           validator: (value)=> FormValidation(
@@ -75,7 +75,7 @@ class UserRegistrationScreen extends HookConsumerWidget {
 
                         PrimaryTextFormFields(
                           isRequired: true,
-                          controller: authencationState.passwordController,
+                          controller: authenticationState.passwordController,
                           title: "Password",
                           hintText: "*******",
                           passwordVisibility: obsecurePassword.value,
@@ -91,14 +91,14 @@ class UserRegistrationScreen extends HookConsumerWidget {
 
                         PrimaryTextFormFields(
                           isRequired: true,
-                          controller: authencationState.confirmPasswordController,
+                          controller: authenticationState.confirmPasswordController,
                           title: "Confirm Password",
                           hintText: "*******",
                           passwordVisibility: obsecureConfirmPassword.value,
                           showSuffixIcon: true,
                           suffixIconPressed: ()=> obsecureConfirmPassword.value = !obsecureConfirmPassword.value,
                           validator: (value){
-                            if(authencationState.passwordController.text != value!){
+                            if(authenticationState.passwordController.text != value!){
                               return "Don't match your confirm password.";
                             }else{
                               return null;
@@ -120,15 +120,15 @@ class UserRegistrationScreen extends HookConsumerWidget {
                           children: [
                             RadioMenuButton(
                               value: "Admin",
-                              groupValue: authencationState.selectedUserType,
+                              groupValue: authenticationState.selectedUserType,
                               style: ButtonStyle(
                                 padding: WidgetStatePropertyAll(padding0),
                               ),
-                              onChanged: (value)=> authencationCtrl.selectUserType(userType: value ?? "Admin"),
+                              onChanged: (value)=> authenticationCtrl.selectUserType(userType: value ?? "Admin"),
                               child: Text(
                                   "Admin",
                                   style: TextStyle(
-                                      color: authencationState.selectedUserType == null && toWarn.value ? ColorPalates.primaryColor : null
+                                      color: authenticationState.selectedUserType == null && toWarn.value ? ColorPalates.primaryColor : null
                                   ),
                               ),
                             ),
@@ -137,15 +137,15 @@ class UserRegistrationScreen extends HookConsumerWidget {
 
                             RadioMenuButton(
                               value: "Mechanic",
-                              groupValue: authencationState.selectedUserType,
+                              groupValue: authenticationState.selectedUserType,
                               style: ButtonStyle(
                                 padding: WidgetStatePropertyAll(padding0),
                               ),
-                              onChanged: (value)=> authencationCtrl.selectUserType(userType: value ?? "Mechanic"),
+                              onChanged: (value)=> authenticationCtrl.selectUserType(userType: value ?? "Mechanic"),
                               child: Text(
                                   "Mechanic",
                                 style: TextStyle(
-                                  color: authencationState.selectedUserType == null && toWarn.value
+                                  color: authenticationState.selectedUserType == null && toWarn.value
                                       ? ColorPalates.primaryColor : null
                                 ),
                               ),
@@ -160,11 +160,11 @@ class UserRegistrationScreen extends HookConsumerWidget {
 
                   PrimaryButton(
                       title: "Sign Up",
-                      isLoading: authencationState.isLoading,
+                      isLoading: authenticationState.isLoading,
                       onPressed: (){
                         toWarn.value = true;
-                        if(formKey.currentState!.validate()){
-                          authencationCtrl.createUserAccount().then((done){
+                        if(formKey.currentState!.validate() && authenticationState.selectedUserType != null){
+                          authenticationCtrl.createUserAccount().then((done){
                             if(done) Navigator.pushReplacement(context,CupertinoPageRoute(builder: (context)=> const DashboardScreen()));
                           });
                         }
