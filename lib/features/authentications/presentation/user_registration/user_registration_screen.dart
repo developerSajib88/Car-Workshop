@@ -2,6 +2,7 @@ import 'package:feature_first/common/widgets/buttons/primary_buttons.dart';
 import 'package:feature_first/common/widgets/components/image_background.dart';
 import 'package:feature_first/common/widgets/logo_widget.dart';
 import 'package:feature_first/common/widgets/text_form_fields/primary_text_form_fields.dart';
+import 'package:feature_first/core/dependency_injection/dependency_injection.dart';
 import 'package:feature_first/features/dashboard/dashboard_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,10 @@ class UserRegistrationScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+
+    final authencationState = ref.watch(authenticationProvider);
+    final authencationCtrl = ref.watch(authenticationProvider.notifier);
+
     return Scaffold(
         body: ImageBackground(
             child: SingleChildScrollView(
@@ -45,14 +50,16 @@ class UserRegistrationScreen extends HookConsumerWidget {
                   Column(
                     crossAxisAlignment: crossStart,
                     children: [
-                      const PrimaryTextFormFields(
+                      PrimaryTextFormFields(
+                          controller: authencationState.emailController,
                           title: "Email",
                           hintText: "demo@gmail.com"
                       ),
 
                       gap8,
 
-                      const PrimaryTextFormFields(
+                      PrimaryTextFormFields(
+                        controller: authencationState.passwordController,
                         title: "Password",
                         hintText: "*******",
                         showSuffixIcon: true,
@@ -60,7 +67,8 @@ class UserRegistrationScreen extends HookConsumerWidget {
 
                       gap8,
 
-                      const PrimaryTextFormFields(
+                      PrimaryTextFormFields(
+                        controller: authencationState.confirmPasswordController,
                         title: "Confirm Password",
                         hintText: "*******",
                         showSuffixIcon: true,
@@ -76,24 +84,24 @@ class UserRegistrationScreen extends HookConsumerWidget {
                       Row(
                         children: [
                           RadioMenuButton(
-                            value: "",
-                            groupValue: "",
+                            value: "Admin",
+                            groupValue: authencationState.selectedUserType,
                             style: ButtonStyle(
                               padding: WidgetStatePropertyAll(padding0),
                             ),
-                            onChanged: (value){},
+                            onChanged: (value)=> authencationCtrl.selectUserType(userType: value ?? "Admin"),
                             child: const Text("Admin"),
                           ),
 
                           gap6,
 
                           RadioMenuButton(
-                            value: "",
-                            groupValue: "",
+                            value: "Mechanic",
+                            groupValue: authencationState.selectedUserType,
                             style: ButtonStyle(
                               padding: WidgetStatePropertyAll(padding0),
                             ),
-                            onChanged: (value){},
+                            onChanged: (value)=> authencationCtrl.selectUserType(userType: value ?? "Mechanic"),
                             child: const Text("Mechanic"),
                           ),
                         ],
@@ -105,7 +113,10 @@ class UserRegistrationScreen extends HookConsumerWidget {
 
                   PrimaryButton(
                       title: "Sign Up",
-                      onPressed: ()=> Navigator.push(context,CupertinoPageRoute(builder: (context)=> const DashboardScreen()))
+                      onPressed: (){
+                        authencationCtrl.createUserAccount();
+                        //Navigator.push(context,CupertinoPageRoute(builder: (context)=> const DashboardScreen()));
+                      }
                   ),
 
 
