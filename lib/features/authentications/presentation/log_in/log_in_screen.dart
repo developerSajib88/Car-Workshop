@@ -33,11 +33,11 @@ class LogInScreen extends HookConsumerWidget {
               mainAxisAlignment: mainCenter,
               children: [
 
-                gap24,
+                gap12,
 
                 const LogoWidget(),
 
-                gap24,
+                gap12,
 
                 Text(
                   "Welcome Back",
@@ -52,7 +52,7 @@ class LogInScreen extends HookConsumerWidget {
                   textAlign: TextAlign.center,
                 ),
 
-                gap12,
+                gap8,
                 
                 
                 Form(
@@ -138,7 +138,7 @@ class LogInScreen extends HookConsumerWidget {
                 ),
                 
                 
-                gap16,
+                gap12,
 
                 PrimaryButton(
                     title: "Sign In",
