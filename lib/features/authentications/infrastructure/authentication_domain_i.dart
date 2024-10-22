@@ -8,4 +8,8 @@ class AuthenticationDomI extends AuthenticationDom{
   Future<UserModel?> createNewAccount({required Map<String,dynamic> body}) async =>
       await FirebaseServices.createNewAccount(body: body);
 
+  @override
+  Future<UserModel?> logInAccount({required String userType, required String email, required String password}) async =>
+      await FirebaseServices.checkUserCredentials(userType: userType, email: email, password: password);
+
 }
