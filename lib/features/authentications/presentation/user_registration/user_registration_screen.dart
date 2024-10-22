@@ -60,6 +60,31 @@ class UserRegistrationScreen extends HookConsumerWidget {
                       crossAxisAlignment: crossStart,
                       children: [
 
+
+                        PrimaryTextFormFields(
+                          isRequired: true,
+                          controller: authenticationState.userNameController,
+                          title: "Full Name",
+                          hintText: "eg., Jhon Doe",
+                          validator: (value)=> FormValidation(
+                              validationType: ValidationType.name,
+                              formValue: value
+                          ).validate(),
+                        ),
+
+
+                        PrimaryTextFormFields(
+                          isRequired: true,
+                          controller: authenticationState.emailController,
+                          title: "Email",
+                          hintText: "demo@gmail.com",
+                          validator: (value)=> FormValidation(
+                              validationType: ValidationType.email,
+                              formValue: value
+                          ).validate(),
+                        ),
+
+
                         PrimaryTextFormFields(
                           isRequired: true,
                           controller: authenticationState.emailController,
