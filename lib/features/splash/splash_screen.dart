@@ -1,8 +1,9 @@
 import 'package:feature_first/common/widgets/buttons/primary_buttons.dart';
 import 'package:feature_first/common/widgets/components/image_background.dart';
 import 'package:feature_first/common/widgets/logo_widget.dart';
+import 'package:feature_first/data/local_database/get_local_database.dart';
 import 'package:feature_first/features/authentications/presentation/log_in/log_in_screen.dart';
-import 'package:feature_first/features/common/booking_job_details/booking_job_details_screen.dart';
+import 'package:feature_first/features/dashboard/dashboard_screen.dart';
 import 'package:feature_first/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -51,7 +52,13 @@ class SplashScreen extends StatelessWidget {
 
               PrimaryButton(
                   title: "Get Started",
-                  onPressed: ()=> Navigator.push(context,CupertinoPageRoute(builder: (context)=> LogInScreen()))
+                  onPressed: (){
+                    if(GetLocalDatabase().userIsLogIn() ?? false){
+                      Navigator.push(context,CupertinoPageRoute(builder: (context)=> const DashboardScreen()));
+                    }else{
+                      Navigator.push(context,CupertinoPageRoute(builder: (context)=> const LogInScreen()));
+                    }
+                  }
               ),
 
 
