@@ -18,6 +18,26 @@ class AuthenticationStateNotifier extends StateNotifier<AuthenticationState>{
     ));
   }
 
+
+  Future<bool> userLogIn()async{
+    stateMaker(state.copyWith(isLoading: true));
+    await authenticationDom.logInAccount(
+        userType: state.selectedUserType ?? "Admin",
+        email: state.emailController.text,
+        password: state.passwordController.text
+    ).then((value){
+      if(value != null){
+        SetLocalDatabase().userName(value.name);
+        SetLocalDatabase().userEmail(value.email);
+        SetLocalDatabase().userType(value.userType);
+        return true;
+      }
+    });
+    stateMaker(state.copyWith(isLoading: false));
+    return false;
+  }
+
+
   Future<bool> createUserAccount()async{
     stateMaker(state.copyWith(isLoading: true));
     Map<String,dynamic> body = {
