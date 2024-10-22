@@ -19,7 +19,7 @@ class AuthenticationStateNotifier extends StateNotifier<AuthenticationState>{
   }
 
 
-  Future<bool> userLogIn()async{
+  Future userLogIn()async{
     stateMaker(state.copyWith(isLoading: true));
     await authenticationDom.logInAccount(
         userType: state.selectedUserType ?? "Admin",
@@ -30,33 +30,38 @@ class AuthenticationStateNotifier extends StateNotifier<AuthenticationState>{
         SetLocalDatabase().userName(value.name);
         SetLocalDatabase().userEmail(value.email);
         SetLocalDatabase().userType(value.userType);
-        return true;
+        stateMaker(state.copyWith(
+            isLoading: false,
+            authenticate: true
+        ));
       }
     });
     stateMaker(state.copyWith(isLoading: false));
-    return false;
   }
 
 
-  Future<bool> createUserAccount()async{
+  Future createUserAccount()async{
     stateMaker(state.copyWith(isLoading: true));
     Map<String,dynamic> body = {
       "user_id" : GlobalFunctions.generateRandomUserId(),
       "user_type" : state.selectedUserType ?? "admin",
       "name": "Sajib Hasan",
-      "email": state.passwordController.text,
+      "email": state.emailController.text,
       "password" : state.passwordController.text
     };
+
     await authenticationDom.createNewAccount(body: body).then((value){
       if(value != null){
         SetLocalDatabase().userName(value.name);
         SetLocalDatabase().userEmail(value.email);
         SetLocalDatabase().userType(value.userType);
-        return true;
+        stateMaker(state.copyWith(
+            isLoading: false,
+            authenticate: true
+        ));
       }
     });
     stateMaker(state.copyWith(isLoading: false));
-    return false;
   }
 
 }

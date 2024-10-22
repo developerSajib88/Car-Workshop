@@ -161,11 +161,11 @@ class UserRegistrationScreen extends HookConsumerWidget {
                   PrimaryButton(
                       title: "Sign Up",
                       isLoading: authenticationState.isLoading,
-                      onPressed: (){
+                      onPressed: ()async{
                         toWarn.value = true;
                         if(formKey.currentState!.validate() && authenticationState.selectedUserType != null){
-                          authenticationCtrl.createUserAccount().then((done){
-                            if(done) Navigator.pushReplacement(context,CupertinoPageRoute(builder: (context)=> const DashboardScreen()));
+                          authenticationCtrl.createUserAccount().then((value){
+                            if(authenticationState.authenticate) Navigator.pushReplacement(context,CupertinoPageRoute(builder: (context)=> const DashboardScreen()));
                           });
                         }
                       }
@@ -184,7 +184,7 @@ class UserRegistrationScreen extends HookConsumerWidget {
                       ),
                       gap2,
                       InkWell(
-                          onTap: (){},
+                          onTap: ()=> Navigator.pop(context),
                           child: Text(
                             "Log In",
                             style: CustomTextStyles.buttonTextStyles

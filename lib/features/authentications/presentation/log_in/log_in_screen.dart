@@ -5,6 +5,7 @@ import 'package:feature_first/common/widgets/logo_widget.dart';
 import 'package:feature_first/common/widgets/text_form_fields/primary_text_form_fields.dart';
 import 'package:feature_first/core/dependency_injection/dependency_injection.dart';
 import 'package:feature_first/features/authentications/presentation/user_registration/user_registration_screen.dart';
+import 'package:feature_first/features/dashboard/dashboard_screen.dart';
 import 'package:feature_first/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -141,11 +142,17 @@ class LogInScreen extends HookConsumerWidget {
                 gap12,
 
                 PrimaryButton(
+                    isLoading: authenticationState.isLoading,
                     title: "Sign In",
                     onPressed: (){
                       toWarn.value = true;
                       if(formKey.currentState!.validate() && authenticationState.selectedUserType != null){
-
+                        authenticationCtrl.userLogIn().then((value){
+                          if(authenticationState.authenticate) {Navigator.pushReplacement(
+                          context,
+                          CupertinoPageRoute(builder: (context) => const DashboardScreen()));
+                      }
+                  });
                       }
                     }
                 ),
