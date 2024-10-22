@@ -29,6 +29,7 @@ class AuthenticationStateNotifier extends StateNotifier<AuthenticationState>{
         password: state.passwordController.text
     ).then((value){
       if(value != null){
+        SetLocalDatabase().userId(value.userId.toString());
         SetLocalDatabase().userName(value.name);
         SetLocalDatabase().userEmail(value.email);
         SetLocalDatabase().userType(value.userType);
@@ -46,7 +47,7 @@ class AuthenticationStateNotifier extends StateNotifier<AuthenticationState>{
     Map<String,dynamic> body = {
       "user_id" : GlobalFunctions.generateRandomUserId(),
       "user_type" : state.selectedUserType ?? "Admin",
-      "name": "Sajib Hasan",
+      "name": state.userNameController.text,
       "email": state.emailController.text,
       "password" : state.passwordController.text
     };
@@ -57,6 +58,7 @@ class AuthenticationStateNotifier extends StateNotifier<AuthenticationState>{
         body: body
     ).then((value){
       if(value != null){
+        SetLocalDatabase().userId(value.userId.toString());
         SetLocalDatabase().userName(value.name);
         SetLocalDatabase().userEmail(value.email);
         SetLocalDatabase().userType(value.userType);

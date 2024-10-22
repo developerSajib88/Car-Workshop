@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 class AuthenticationState extends Equatable{
   final bool isLoading;
   final String? selectedUserType;
+  final TextEditingController userNameController;
   final TextEditingController emailController;
   final TextEditingController passwordController;
   final TextEditingController confirmPasswordController;
@@ -11,6 +12,7 @@ class AuthenticationState extends Equatable{
   const AuthenticationState({
     required this.isLoading,
     required this.selectedUserType,
+    required this.userNameController,
     required this.emailController,
     required this.passwordController,
     required this.confirmPasswordController,
@@ -21,6 +23,7 @@ class AuthenticationState extends Equatable{
   List<Object?> get props => [
     isLoading,
     selectedUserType,
+    userNameController,
     emailController,
     passwordController,
     confirmPasswordController
@@ -30,6 +33,7 @@ class AuthenticationState extends Equatable{
   factory AuthenticationState.init()=> AuthenticationState(
       isLoading: false,
       selectedUserType: null,
+      userNameController: TextEditingController(),
       emailController: TextEditingController(),
       passwordController: TextEditingController(),
       confirmPasswordController: TextEditingController()
@@ -39,12 +43,14 @@ class AuthenticationState extends Equatable{
   AuthenticationState copyWith({
     bool? isLoading,
     String? selectedUserType,
+    TextEditingController? userNameController,
     TextEditingController? emailController,
     TextEditingController? passwordController,
     TextEditingController? confirmPasswordController
   })=> AuthenticationState(
     isLoading: isLoading ?? this.isLoading,
     selectedUserType: selectedUserType ?? this.selectedUserType,
+    userNameController: userNameController ?? this.userNameController,
     emailController: emailController ?? this.emailController,
     passwordController: passwordController ?? this.passwordController,
     confirmPasswordController: confirmPasswordController ?? this.confirmPasswordController
