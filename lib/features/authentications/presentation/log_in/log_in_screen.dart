@@ -73,7 +73,7 @@ class LogInScreen extends HookConsumerWidget {
                         ).validate(),
                       ),
 
-                      gap8,
+                      gap6,
 
                       PrimaryTextFormFields(
                         isRequired: true,
@@ -89,7 +89,7 @@ class LogInScreen extends HookConsumerWidget {
                         ).validate(),
                       ),
 
-                      gap8,
+                      gap6,
 
                       Row(
                         children: [

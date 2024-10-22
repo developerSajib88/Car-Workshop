@@ -28,16 +28,18 @@ class UserRegistrationScreen extends HookConsumerWidget {
 
     return Scaffold(
         body: ImageBackground(
+            padding: paddingH12,
             child: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: crossCenter,
                 mainAxisAlignment: mainCenter,
                 children: [
 
+                  gap6,
 
                   const LogoWidget(),
 
-                  gap12,
+                  gap8,
 
                   Text(
                     "Create Your Account",
@@ -52,7 +54,7 @@ class UserRegistrationScreen extends HookConsumerWidget {
                     textAlign: TextAlign.center,
                   ),
 
-                  gap8,
+                  gap4,
 
                   Form(
                     key: formKey,
@@ -65,13 +67,14 @@ class UserRegistrationScreen extends HookConsumerWidget {
                           isRequired: true,
                           controller: authenticationState.userNameController,
                           title: "Full Name",
-                          hintText: "eg., Jhon Doe",
+                          hintText: "Jhon Doe",
                           validator: (value)=> FormValidation(
                               validationType: ValidationType.name,
                               formValue: value
                           ).validate(),
                         ),
 
+                        gap6,
 
                         PrimaryTextFormFields(
                           isRequired: true,
@@ -84,19 +87,7 @@ class UserRegistrationScreen extends HookConsumerWidget {
                           ).validate(),
                         ),
 
-
-                        PrimaryTextFormFields(
-                          isRequired: true,
-                          controller: authenticationState.emailController,
-                          title: "Email",
-                          hintText: "demo@gmail.com",
-                          validator: (value)=> FormValidation(
-                              validationType: ValidationType.email,
-                              formValue: value
-                          ).validate(),
-                        ),
-
-                        gap8,
+                        gap6,
 
                         PrimaryTextFormFields(
                           isRequired: true,
@@ -112,7 +103,7 @@ class UserRegistrationScreen extends HookConsumerWidget {
                           ).validate(),
                         ),
 
-                        gap8,
+                        gap6,
 
                         PrimaryTextFormFields(
                           isRequired: true,
@@ -132,7 +123,7 @@ class UserRegistrationScreen extends HookConsumerWidget {
                         ),
 
 
-                        gap8,
+                        gap6,
 
                         Row(
                           children: [
