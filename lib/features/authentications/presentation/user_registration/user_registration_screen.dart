@@ -165,7 +165,7 @@ class UserRegistrationScreen extends HookConsumerWidget {
                         toWarn.value = true;
                         if(formKey.currentState!.validate() && authenticationState.selectedUserType != null){
                           authenticationCtrl.createUserAccount().then((value){
-                            if(authenticationState.authenticate) Navigator.pushReplacement(context,CupertinoPageRoute(builder: (context)=> const DashboardScreen()));
+                            if(value) Navigator.pushReplacement(context,CupertinoPageRoute(builder: (context)=> const DashboardScreen()));
                           });
                         }
                       }

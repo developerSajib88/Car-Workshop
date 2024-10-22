@@ -148,7 +148,7 @@ class LogInScreen extends HookConsumerWidget {
                       toWarn.value = true;
                       if(formKey.currentState!.validate() && authenticationState.selectedUserType != null){
                         authenticationCtrl.userLogIn().then((value){
-                          if(authenticationState.authenticate) {Navigator.pushReplacement(
+                          if(value) {Navigator.pushReplacement(
                           context,
                           CupertinoPageRoute(builder: (context) => const DashboardScreen()));
                       }
