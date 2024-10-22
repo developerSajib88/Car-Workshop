@@ -23,7 +23,7 @@ class SetLocalDatabase{
 
   void userType(String value) => storingData(KeyLocalDatabase.userType, value);
 
-  void userId(String value) => storingData(KeyLocalDatabase.userId, value);
+  void userId(int value) => storingData(KeyLocalDatabase.userId, value);
 
   void userName(String value) => storingData(KeyLocalDatabase.userName, value);
 

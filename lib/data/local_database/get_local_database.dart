@@ -12,7 +12,7 @@ class GetLocalDatabase {
 
   String? userType() => database.get(KeyLocalDatabase.userType);
 
-  String? userId() => database.get(KeyLocalDatabase.userId);
+  int? userId() => database.get(KeyLocalDatabase.userId);
 
   String? userName() => database.get(KeyLocalDatabase.userName);
 

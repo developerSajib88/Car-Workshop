@@ -29,7 +29,7 @@ class AuthenticationStateNotifier extends StateNotifier<AuthenticationState>{
     stateMaker(
       state.copyWith(
         userModel: UserModel(
-            userId: int.parse(GetLocalDatabase().userId() ?? "12348"),
+            userId: GetLocalDatabase().userId() ?? 12348,
             userType: GetLocalDatabase().userType() ?? "",
             name: GetLocalDatabase().userName() ?? "",
             email: GetLocalDatabase().userEmail() ?? "",
@@ -48,7 +48,8 @@ class AuthenticationStateNotifier extends StateNotifier<AuthenticationState>{
         password: state.passwordController.text
     ).then((value){
       if(value != null){
-        SetLocalDatabase().userId(value.userId.toString());
+        SetLocalDatabase().userIsLogin(true);
+        SetLocalDatabase().userId(value.userId);
         SetLocalDatabase().userName(value.name);
         SetLocalDatabase().userEmail(value.email);
         SetLocalDatabase().userType(value.userType);
@@ -77,7 +78,8 @@ class AuthenticationStateNotifier extends StateNotifier<AuthenticationState>{
         body: body
     ).then((value){
       if(value != null){
-        SetLocalDatabase().userId(value.userId.toString());
+        SetLocalDatabase().userIsLogin(true);
+        SetLocalDatabase().userId(value.userId);
         SetLocalDatabase().userName(value.name);
         SetLocalDatabase().userEmail(value.email);
         SetLocalDatabase().userType(value.userType);
