@@ -1,4 +1,5 @@
 import 'package:feature_first/common/global/functions/global_functions.dart';
+import 'package:feature_first/data/firebase/firebase_collections/firebase_collections.dart';
 import 'package:feature_first/data/local_database/set_local_database.dart';
 import 'package:feature_first/features/authentications/applications/authentication_state.dart';
 import 'package:feature_first/features/authentications/domain/authentication_domain.dart';
@@ -44,13 +45,17 @@ class AuthenticationStateNotifier extends StateNotifier<AuthenticationState>{
     bool authSuccess = false;
     Map<String,dynamic> body = {
       "user_id" : GlobalFunctions.generateRandomUserId(),
-      "user_type" : state.selectedUserType ?? "admin",
+      "user_type" : state.selectedUserType ?? "Admin",
       "name": "Sajib Hasan",
       "email": state.emailController.text,
       "password" : state.passwordController.text
     };
 
-    await authenticationDom.createNewAccount(body: body).then((value){
+    await authenticationDom.createNewAccount(
+        collection: state.selectedUserType == "Admin" ? FirebaseCollections.admin
+            : FirebaseCollections.mechanic,
+        body: body
+    ).then((value){
       if(value != null){
         SetLocalDatabase().userName(value.name);
         SetLocalDatabase().userEmail(value.email);

@@ -63,6 +63,9 @@ dependencies:
   # OTP form fields
   pinput: ^5.0.0
 
+  # Toast Message
+  fluttertoast: ^8.0.9
+
 
 
 dev_dependencies:
