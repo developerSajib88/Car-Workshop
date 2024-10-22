@@ -23,7 +23,7 @@ class LogInScreen extends HookConsumerWidget {
 
     GlobalKey<FormState> formKey = GlobalKey<FormState>();
     final authenticationState = ref.watch(authenticationProvider);
-    final authenticationCtrl = ref.watch(authenticationProvider.notifier);
+    final authenticationCtrl = ref.read(authenticationProvider.notifier);
 
 
     return Scaffold(
