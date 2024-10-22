@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 
 class ImageBackground extends StatelessWidget {
   final Widget? child;
+  final EdgeInsetsGeometry? padding;
   const ImageBackground({
     super.key,
-    this.child
+    this.child,
+    this.padding
   });
 
   @override
@@ -25,7 +27,7 @@ class ImageBackground extends StatelessWidget {
             width: 1.sw,
             height: 1.sh,
             color: Colors.white.withOpacity(0.9),
-            padding: padding12,
+            padding: padding ?? padding12,
             child: child,
           ),
         ],

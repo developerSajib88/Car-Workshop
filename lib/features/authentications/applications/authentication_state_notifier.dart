@@ -1,6 +1,8 @@
 import 'package:feature_first/common/global/functions/global_functions.dart';
 import 'package:feature_first/data/firebase/firebase_collections/firebase_collections.dart';
+import 'package:feature_first/data/local_database/get_local_database.dart';
 import 'package:feature_first/data/local_database/set_local_database.dart';
+import 'package:feature_first/data/model/user_model.dart';
 import 'package:feature_first/features/authentications/applications/authentication_state.dart';
 import 'package:feature_first/features/authentications/domain/authentication_domain.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -12,6 +14,10 @@ class AuthenticationStateNotifier extends StateNotifier<AuthenticationState>{
 
   void stateMaker(AuthenticationState newState)=> state = newState;
 
+  void init(){
+    setUserData();
+  }
+
 
   void selectUserType({required String userType}){
     stateMaker(state.copyWith(
@@ -19,6 +25,19 @@ class AuthenticationStateNotifier extends StateNotifier<AuthenticationState>{
     ));
   }
 
+  void setUserData(){
+    stateMaker(
+      state.copyWith(
+        userModel: UserModel(
+            userId: int.parse(GetLocalDatabase().userId() ?? "12348"),
+            userType: GetLocalDatabase().userType() ?? "",
+            name: GetLocalDatabase().userName() ?? "",
+            email: GetLocalDatabase().userEmail() ?? "",
+            password: "123456"
+        )
+      )
+    );
+  }
 
   Future<bool> userLogIn()async{
     stateMaker(state.copyWith(isLoading: true));

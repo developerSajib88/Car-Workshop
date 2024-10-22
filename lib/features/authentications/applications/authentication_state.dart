@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:feature_first/data/model/user_model.dart';
 import 'package:flutter/cupertino.dart';
 
 class AuthenticationState extends Equatable{
@@ -8,6 +9,7 @@ class AuthenticationState extends Equatable{
   final TextEditingController emailController;
   final TextEditingController passwordController;
   final TextEditingController confirmPasswordController;
+  final UserModel? userModel;
 
   const AuthenticationState({
     required this.isLoading,
@@ -16,6 +18,7 @@ class AuthenticationState extends Equatable{
     required this.emailController,
     required this.passwordController,
     required this.confirmPasswordController,
+    required this.userModel
   });
 
   @override
@@ -26,7 +29,8 @@ class AuthenticationState extends Equatable{
     userNameController,
     emailController,
     passwordController,
-    confirmPasswordController
+    confirmPasswordController,
+    userModel
   ];
 
 
@@ -36,7 +40,8 @@ class AuthenticationState extends Equatable{
       userNameController: TextEditingController(),
       emailController: TextEditingController(),
       passwordController: TextEditingController(),
-      confirmPasswordController: TextEditingController()
+      confirmPasswordController: TextEditingController(),
+      userModel: null
   );
 
 
@@ -46,14 +51,16 @@ class AuthenticationState extends Equatable{
     TextEditingController? userNameController,
     TextEditingController? emailController,
     TextEditingController? passwordController,
-    TextEditingController? confirmPasswordController
+    TextEditingController? confirmPasswordController,
+    UserModel? userModel
   })=> AuthenticationState(
     isLoading: isLoading ?? this.isLoading,
     selectedUserType: selectedUserType ?? this.selectedUserType,
     userNameController: userNameController ?? this.userNameController,
     emailController: emailController ?? this.emailController,
     passwordController: passwordController ?? this.passwordController,
-    confirmPasswordController: confirmPasswordController ?? this.confirmPasswordController
+    confirmPasswordController: confirmPasswordController ?? this.confirmPasswordController,
+    userModel: userModel ?? this.userModel
   );
 
 }
