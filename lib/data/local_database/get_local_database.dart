@@ -12,6 +12,8 @@ class GetLocalDatabase {
 
   String? userType() => database.get(KeyLocalDatabase.userType);
 
+  String? userId() => database.get(KeyLocalDatabase.userId);
+
   String? userName() => database.get(KeyLocalDatabase.userName);
 
   String? userEmail() => database.get(KeyLocalDatabase.userEmail);
