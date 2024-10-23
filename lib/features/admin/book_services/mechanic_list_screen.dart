@@ -44,7 +44,8 @@ class MechanicListScreen extends HookConsumerWidget {
                       itemCount: adminState.mechanicList?.length,
                       itemBuilder: (context,index){
                         return WidgetBounce(
-                            onPressed: ()=> Navigator.push(context,CupertinoPageRoute(builder: (context)=> const BookServiceScreen())),
+                            onPressed: ()=> Navigator.push(context,
+                                CupertinoPageRoute(builder: (context)=> const BookServiceScreen())),
                             child: MechanicItemView(
                                 mechanicId: adminState.mechanicList?[index]?.userId ?? 0000,
                                 mechanicName: adminState.mechanicList?[index]?.name ?? "",

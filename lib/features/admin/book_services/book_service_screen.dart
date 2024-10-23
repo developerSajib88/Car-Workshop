@@ -1,5 +1,8 @@
 
 import 'package:feature_first/common/widgets/text_form_fields/primary_text_form_fields.dart';
+import 'package:feature_first/features/admin/book_services/booking_step/booking_step_1.dart';
+import 'package:feature_first/features/admin/book_services/booking_step/booking_step_2.dart';
+import 'package:feature_first/features/admin/book_services/booking_step/booking_step_3.dart';
 import 'package:feature_first/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -29,106 +32,23 @@ class BookServiceScreen extends HookConsumerWidget {
         padding: padding2,
         child: Stepper(
             currentStep: 0,
-            steps: [
+            steps: const <Step>[
 
               Step(
-                  title: const Text("Booking Details"),
-                  content: Column(
-                    children: [
-
-                      PrimaryTextFormFields(
-                          title: "Booking Title",
-                          hintText: "e.g.Full Car Service, Oil Change",
-                          minLines: 4,
-                      ),
-
-                      gap8,
-
-                      PrimaryTextFormFields(
-                          title: "Start Date & Time",
-                          hintText: "e.g.2024-10-20 09:00 AM"
-                      ),
-
-                      gap8,
-
-                      PrimaryTextFormFields(
-                          title: "End Date & Time",
-                          hintText: "e.g., 2024-10-20 11:00 AM"
-                      ),
-
-
-                    ],
-                  )
+                  title: Text("Booking Details"),
+                  content: BookingStep1()
               ),
 
               Step(
-                  title: const Text("Car Details"),
-                  content: Column(
-                    children: [
-
-                      PrimaryTextFormFields(
-                        title: "Car Make",
-                        hintText: "e.g., Toyota, Ford",
-                      ),
-
-                      gap8,
-
-                      PrimaryTextFormFields(
-                          title: "Car Model",
-                          hintText: "e.g., Corolla, Mustang"
-                      ),
-
-                      gap8,
-
-                      PrimaryTextFormFields(
-                          title: "Car Year",
-                          hintText: "e.g., 2020"
-                      ),
-
-                      gap8,
-
-                      PrimaryTextFormFields(
-                          title: "Registration Plate",
-                          hintText: "e.g., ABC-1234"
-                      ),
-
-
-
-                    ],
-                  )
+                  title: Text("Car Details"),
+                  content: BookingStep2()
               ),
 
 
               Step(
-                  title: const Text("Customer Details"),
-                  content: Column(
-                    children: [
-
-                      PrimaryTextFormFields(
-                        title: "Name",
-                        hintText: "e.g., John Doe",
-                        minLines: 4,
-                      ),
-
-                      gap8,
-
-                      PrimaryTextFormFields(
-                          title: "Phone",
-                          hintText: "e.g., (123) 456-7890"
-                      ),
-
-                      gap8,
-
-                      PrimaryTextFormFields(
-                          title: "Email",
-                          hintText: "e.g., johndoe@example.com"
-                      ),
-
-
-                    ],
-                  )
+                  title: Text("Customer Details"),
+                  content: BookingStep3()
               ),
-
 
             ]
         ),
