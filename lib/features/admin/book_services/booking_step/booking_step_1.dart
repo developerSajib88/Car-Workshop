@@ -13,57 +13,70 @@ class BookingStep1 extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
 
+    GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
     final adminState = ref.watch(adminProvider);
     final adminCtrl = ref.read(adminProvider.notifier);
 
-    return Column(
-      crossAxisAlignment: crossStart,
-      children: [
+    return Form(
+      key: formKey,
+      child: Column(
+        crossAxisAlignment: crossStart,
+        children: [
 
-        PrimaryTextFormFields(
-          title: "Booking Title",
-          hintText: "e.g.Full Car Service, Oil Change",
-          minLines: 4,
-        ),
+          PrimaryTextFormFields(
+            controller: adminState.titleController,
+            isRequired: true,
+            title: "Booking Title",
+            hintText: "e.g.Full Car Service, Oil Change",
+            minLines: 4,
+          ),
 
-        gap8,
+          gap8,
 
-        PrimaryTextFormFields(
-            title: "Start Date & Time",
-            hintText: "e.g.2024-10-20 09:00 AM"
-        ),
+          PrimaryTextFormFields(
+              controller: adminState.startDateTimeController,
+              isRequired: true,
+              title: "Start Date & Time",
+              hintText: "e.g.2024-10-20 09:00 AM"
+          ),
 
-        gap8,
+          gap8,
 
-        PrimaryTextFormFields(
-            title: "End Date & Time",
-            hintText: "e.g., 2024-10-20 11:00 AM"
-        ),
+          PrimaryTextFormFields(
+              controller: adminState.endDateTimeController,
+              isRequired: true,
+              title: "End Date & Time",
+              hintText: "e.g., 2024-10-20 11:00 AM"
+          ),
 
-        gap12,
+          gap12,
 
 
-        WidgetBounce(
-            onPressed: (){
-              adminCtrl.bookingStepUpdate(step: 1);
-            },
-            child: Container(
-              width: 60.w,
-              height: 25.h,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                  color: Colors.green,
-                  borderRadius: radius4
+          WidgetBounce(
+              onPressed: (){
+                if(formKey.currentState!.validate()){
+                  adminCtrl.bookingStepUpdate(step: 1);
+                }
+              },
+              child: Container(
+                width: 60.w,
+                height: 25.h,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                    color: Colors.green,
+                    borderRadius: radius4
+                ),
+                child: const Text(
+                  "Continue",
+                  style: TextStyle(color: Colors.white),
+                ),
               ),
-              child: const Text(
-                "Continue",
-                style: TextStyle(color: Colors.white),
-              ),
-            ),
-        )
+          )
 
 
-      ],
+        ],
+      ),
     );
   }
 }
