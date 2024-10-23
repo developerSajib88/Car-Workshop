@@ -13,6 +13,14 @@ class AdminStateNotifier extends StateNotifier<AdminState>{
     getAllMechanicList();
   }
 
+  void bookingStepUpdate({required int step}){
+    stateMaker(
+      state.copyWith(
+        stepNumber: step
+      )
+    );
+  }
+
   Future getAllMechanicList()async{
    stateMaker(state.copyWith(isLoading: true));
    await adminDomain.getAllMechanic().then((value){
