@@ -16,6 +16,7 @@ class DashboardScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
 
+    final authenticationState = ref.watch(authenticationProvider);
     final authenticationCtrl = ref.read(authenticationProvider.notifier);
     final selectedIndex = useState<int>(0);
 
@@ -34,10 +35,10 @@ class DashboardScreen extends HookConsumerWidget {
         width: 1.sw,
         height: 1.sh,
         padding: padding6,
-        child: const Visibility(
-          visible: true,
-          replacement: MechanicJobList(),
-          child: AdminBookingList(),
+        child: Visibility(
+          visible: authenticationState.userModel?.userType == "Admin",
+          replacement: const MechanicJobList(),
+          child: const AdminBookingList(),
         ),
       ),
     );
