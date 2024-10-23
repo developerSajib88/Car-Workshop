@@ -71,21 +71,21 @@ class DashboardAppBar extends HookConsumerWidget implements PreferredSizeWidget 
 
             const Spacer(),
 
-            IconButton(
-                onPressed: ()=> userLogOut(),
-                icon: Icon(Icons.logout_outlined,color: ColorPalates.defaultWhite)
-            ),
+            // IconButton(
+            //     onPressed: ()=> userLogOut(),
+            //     icon: Icon(Icons.logout_outlined,color: ColorPalates.defaultWhite)
+            // ),
         
-            // SizedBox(
-            //   width: 60.w,
-            //   height: 22.h,
-            //   child: PrimaryButton(
-            //       title: "Book Now",
-            //       backgroundColor: ColorPalates.defaultWhite,
-            //       titleColor: ColorPalates.secondaryColor,
-            //       onPressed: ()=> Navigator.push(context,CupertinoPageRoute(builder: (context)=> const MechanicListScreen()))
-            //   ),
-            // )
+            SizedBox(
+              width: 60.w,
+              height: 22.h,
+              child: PrimaryButton(
+                  title: "Book Now",
+                  backgroundColor: ColorPalates.defaultWhite,
+                  titleColor: ColorPalates.secondaryColor,
+                  onPressed: ()=> Navigator.push(context,CupertinoPageRoute(builder: (context)=> const MechanicListScreen()))
+              ),
+            )
           ],
         ),
       ),

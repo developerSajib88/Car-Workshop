@@ -1,4 +1,8 @@
 
+import 'package:feature_first/features/admin/application/admin_notifier_state.dart';
+import 'package:feature_first/features/admin/application/admin_state.dart';
+import 'package:feature_first/features/admin/domain/admin_domain.dart';
+import 'package:feature_first/features/admin/infrastructure/admin_domain_i.dart';
 import 'package:feature_first/features/authentications/applications/authentication_state.dart';
 import 'package:feature_first/features/authentications/applications/authentication_state_notifier.dart';
 import 'package:feature_first/features/authentications/domain/authentication_domain.dart';
@@ -11,4 +15,5 @@ final getIt = GetIt.instance;
 
 void init() {
   getIt.registerLazySingleton<AuthenticationDom>(()=> AuthenticationDomI());
+  getIt.registerLazySingleton<AdminDomain>(()=> AdminDomainI());
 }
