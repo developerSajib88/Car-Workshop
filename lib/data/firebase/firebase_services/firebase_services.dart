@@ -40,27 +40,44 @@ class FirebaseServices {
     required String password
   }) async {
 
-    // Query the collection for a document where 'email', 'password', and 'user_type' match
-    CollectionReference collection = userType == "Admin" ? FirebaseCollections.admin : FirebaseCollections.mechanic;
-    QuerySnapshot querySnapshot = await collection
-        .where("email", isEqualTo: email)
-        .where("password", isEqualTo: password)
-        .where("user_type", isEqualTo: userType)
-        .limit(1) // Limit to 1 document as there should only be one matching user
-        .get();
+    try {
+      CollectionReference collection = userType == "Admin" ? FirebaseCollections.admin : FirebaseCollections.mechanic;
+      QuerySnapshot querySnapshot = await collection
+          .where("email", isEqualTo: email)
+          .where("password", isEqualTo: password)
+          .where("user_type", isEqualTo: userType)
+          .limit(1)
+          .get();
 
-    // Check if any documents match the query
-    if (querySnapshot.docs.isNotEmpty) {
-      // User exists, return the first matching document data as a Map<String, dynamic>
-      Map<String, dynamic> response = querySnapshot.docs.first.data() as Map<String, dynamic>;
-      UserModel userModel = UserModel.fromJson(response);
-      return userModel;
-    } else {
-      // No matching user found, return null
-      return null;
+      if (querySnapshot.docs.isNotEmpty) {
+        Map<String, dynamic> response = querySnapshot.docs.first.data() as Map<String, dynamic>;
+        UserModel userModel = UserModel.fromJson(response);
+        return userModel;
+      } else {
+        return null;
+      }
+    }catch(e){
+      CustomLog.errorPrint(e);
     }
 
+
   }
+
+
+  Future<List<UserModel>?> getAllMechanic() async {
+    try {
+      QuerySnapshot querySnapshot = await FirebaseCollections.mechanic.get();
+      List<UserModel> allDocuments = querySnapshot.docs.map((doc) {
+        return UserModel.fromJson(doc.data() as Map<String, dynamic>);
+      }).toList();
+      return allDocuments;
+    } catch (e) {
+      CustomLog.errorPrint(e);
+      return null;
+    }
+  }
+
+
 
 
 }
