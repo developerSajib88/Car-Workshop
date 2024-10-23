@@ -39,7 +39,6 @@ class BookServiceScreen extends HookConsumerWidget {
         color: ColorPalates.defaultWhite,
         child: Stepper(
             currentStep: adminState.stepNumber,
-            onStepTapped: (index)=> adminCtrl.bookingStepUpdate(step: index),
             controlsBuilder: (context,_){
               return Container();
             },
@@ -47,17 +46,20 @@ class BookServiceScreen extends HookConsumerWidget {
 
               Step(
                   title: Text("Booking Details"),
+                  stepStyle: StepStyle(color: Colors.green),
                   content: BookingStep1()
               ),
 
               Step(
                   title: Text("Car Details"),
+                  stepStyle: StepStyle(color: Colors.green),
                   content: BookingStep2()
               ),
 
 
               Step(
                   title: Text("Customer Details"),
+                  stepStyle: StepStyle(color: Colors.green),
                   content: BookingStep3()
               ),
 
