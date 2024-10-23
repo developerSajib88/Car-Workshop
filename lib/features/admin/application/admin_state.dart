@@ -12,6 +12,9 @@ class AdminState extends Equatable{
   final TextEditingController carModelController;
   final TextEditingController carYearController;
   final TextEditingController carRegPlateController;
+  final TextEditingController customerNameController;
+  final TextEditingController customerPhoneController;
+  final TextEditingController customerEmailController;
   final List<UserModel?>? mechanicList;
 
   const AdminState({
@@ -24,6 +27,9 @@ class AdminState extends Equatable{
     required this.carModelController,
     required this.carYearController,
     required this.carRegPlateController,
+    required this.customerNameController,
+    required this.customerPhoneController,
+    required this.customerEmailController,
     required this.mechanicList,
   });
 
@@ -37,6 +43,9 @@ class AdminState extends Equatable{
     carModelController,
     carYearController,
     carRegPlateController,
+    customerNameController,
+    customerPhoneController,
+    customerEmailController,
     mechanicList,
   ];
 
@@ -50,6 +59,9 @@ class AdminState extends Equatable{
       carModelController: TextEditingController(),
       carYearController: TextEditingController(),
       carRegPlateController: TextEditingController(),
+      customerNameController: TextEditingController(),
+      customerEmailController: TextEditingController(),
+      customerPhoneController: TextEditingController(),
       mechanicList: null,
   );
 
@@ -63,6 +75,9 @@ class AdminState extends Equatable{
     TextEditingController? carModelController,
     TextEditingController? carYearController,
     TextEditingController? carRegPlateController,
+    TextEditingController? customerNameController,
+    TextEditingController? customerPhoneController,
+    TextEditingController? customerEmailController,
     List<UserModel?>? mechanicList
   })=> AdminState(
       isLoading: isLoading ?? this.isLoading,
@@ -74,7 +89,10 @@ class AdminState extends Equatable{
       carModelController: carModelController ?? this.carModelController,
       carYearController: carYearController ?? this.carYearController,
       carRegPlateController: carRegPlateController ?? this.carRegPlateController,
-      mechanicList: mechanicList ?? this.mechanicList
+      customerNameController: customerNameController ?? this.customerNameController,
+      customerPhoneController: customerNameController ?? this.customerPhoneController,
+      customerEmailController: customerEmailController ?? this.customerEmailController,
+      mechanicList: mechanicList ?? this.mechanicList,
   );
 
 }

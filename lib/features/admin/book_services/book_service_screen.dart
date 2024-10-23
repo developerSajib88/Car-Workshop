@@ -31,7 +31,7 @@ class BookServiceScreen extends HookConsumerWidget {
         height: 1.sh,
         padding: padding2,
         child: Stepper(
-            currentStep: 1,
+            currentStep: 2,
             steps: const <Step>[
 
               Step(
