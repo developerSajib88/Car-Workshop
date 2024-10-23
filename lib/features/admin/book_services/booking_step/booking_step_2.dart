@@ -12,60 +12,76 @@ class BookingStep2 extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
 
+    GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
     final adminState = ref.watch(adminProvider);
     final adminCtrl = ref.read(adminProvider.notifier);
 
-    return Column(
-      children: [
+    return Form(
+      key: formKey,
+      child: Column(
+        crossAxisAlignment: crossStart,
+        children: [
 
-        PrimaryTextFormFields(
-          title: "Car Make",
-          hintText: "e.g., Toyota, Ford",
-        ),
-
-        gap8,
-
-        PrimaryTextFormFields(
-            title: "Car Model",
-            hintText: "e.g., Corolla, Mustang"
-        ),
-
-        gap8,
-
-        PrimaryTextFormFields(
-            title: "Car Year",
-            hintText: "e.g., 2020"
-        ),
-
-        gap8,
-
-        PrimaryTextFormFields(
-            title: "Registration Plate",
-            hintText: "e.g., ABC-1234"
-        ),
-
-        gap12,
-
-        WidgetBounce(
-          onPressed: (){
-            adminCtrl.bookingStepUpdate(step: 2);
-          },
-          child: Container(
-            width: 60.w,
-            height: 25.h,
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-                color: Colors.green,
-                borderRadius: radius4
-            ),
-            child: const Text(
-              "Continue",
-              style: TextStyle(color: Colors.white),
-            ),
+          PrimaryTextFormFields(
+            controller: adminState.carCompanyController,
+            isRequired: true,
+            title: "Car Make",
+            hintText: "e.g., Toyota, Ford",
           ),
-        )
 
-      ],
+          gap8,
+
+          PrimaryTextFormFields(
+              controller: adminState.carModelController,
+              isRequired: true,
+              title: "Car Model",
+              hintText: "e.g., Corolla, Mustang"
+          ),
+
+          gap8,
+
+          PrimaryTextFormFields(
+              controller: adminState.carYearController,
+              isRequired: true,
+              title: "Car Year",
+              hintText: "e.g., 2020"
+          ),
+
+          gap8,
+
+          PrimaryTextFormFields(
+              controller: adminState.carRegPlateController,
+              isRequired: true,
+              title: "Registration Plate",
+              hintText: "e.g., ABC-1234"
+          ),
+
+          gap12,
+
+          WidgetBounce(
+            onPressed: (){
+              if(formKey.currentState!.validate()){
+                adminCtrl.bookingStepUpdate(step: 2);
+              }
+            },
+            child: Container(
+              width: 60.w,
+              height: 25.h,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                  color: Colors.green,
+                  borderRadius: radius4
+              ),
+              child: const Text(
+                "Continue",
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+          )
+
+        ],
+      ),
     );
   }
 }
