@@ -6,7 +6,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MechanicItemView extends StatelessWidget {
-  const MechanicItemView({super.key});
+  final int mechanicId;
+  final String mechanicName;
+  final String email;
+  const MechanicItemView({
+    super.key,
+    required this.mechanicId,
+    required this.mechanicName,
+    required this.email
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -36,17 +44,17 @@ class MechanicItemView extends StatelessWidget {
 
 
               Text(
-                "Mechanic ID: 230943",
+                "Mechanic ID: $mechanicId",
                 style: CustomTextStyles.descriptionTextStyles,
               ),
 
               Text(
-                "Mechanic: Sajib Hasan",
+                "Mechanic: $mechanicName",
                 style: CustomTextStyles.primaryTextStylesBold,
               ),
 
               Text(
-                "Email: developersajib88@gmail.com",
+                "Email: $email",
                 style: CustomTextStyles.descriptionTextStyles,
               ),
 
