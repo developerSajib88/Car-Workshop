@@ -60,8 +60,8 @@ class FirebaseServices {
       }
     }catch(e){
       CustomLog.errorPrint(e);
+      return null;
     }
-
 
   }
 
@@ -93,22 +93,19 @@ class FirebaseServices {
   }
 
 
-  // Future<List<Booking>> fetchBookings() async {
-  //   try {
-  //     // Fetch all documents from the 'bookings' collection
-  //     QuerySnapshot snapshot = await FirebaseFirestore.instance.collection('bookings').get();
-  //
-  //     // Map the documents into a list of Booking objects
-  //     List<Booking> bookings = snapshot.docs.map((doc) {
-  //       return Booking.fromJson(doc.data() as Map<String, dynamic>);
-  //     }).toList();
-  //
-  //     return bookings;
-  //   } catch (e) {
-  //     print('Error fetching bookings: $e');
-  //     return [];
-  //   }
-  // }
+  Future<List<BookingModel>?> fetchAllBookings({required int adminId}) async {
+    try {
+      QuerySnapshot querySnapshot = await FirebaseCollections.bookings.where('admin_id', isEqualTo: adminId).get();
+      List<BookingModel> bookings = querySnapshot.docs.map((doc) {
+        return BookingModel.fromJson(doc.data() as Map<String, dynamic>);
+      }).toList();
+
+      return bookings;
+    } catch (e) {
+      CustomLog.errorPrint(e);
+      return null;
+    }
+  }
 
 
 
