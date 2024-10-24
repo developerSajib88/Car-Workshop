@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:feature_first/common/global/functions/global_functions.dart';
 import 'package:feature_first/data/custom_log.dart';
+import 'package:feature_first/data/firebase/firbase_methods/firebase_methods.dart';
 import 'package:feature_first/data/firebase/firebase_collections/firebase_collections.dart';
+import 'package:feature_first/data/model/booking_model.dart';
 import 'package:feature_first/data/model/user_model.dart';
 
 class FirebaseServices {
@@ -76,6 +78,21 @@ class FirebaseServices {
       return null;
     }
   }
+
+  Future createBookingServices({required Map<String,dynamic> body})async{
+    try{
+      Map<String,dynamic>? firebaseResponse = await FirebaseMethods().add(
+          collection: FirebaseCollections.bookings,
+          body: body
+      );
+    }catch(e){
+      CustomLog.errorPrint(e);
+    }
+  }
+
+
+
+
 
 
 
