@@ -7,6 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class AdminBookingList extends HookConsumerWidget {
   const AdminBookingList({super.key});
@@ -25,22 +26,25 @@ class AdminBookingList extends HookConsumerWidget {
     return SizedBox(
       width: 1.sw,
       height: 1.sh,
-      child: ListView.builder(
-          itemCount: adminState.adminBookingList?.length,
-          itemBuilder: (context,index){
-            return WidgetBounce(
-                onPressed: ()=> Navigator.push(context,CupertinoPageRoute(builder: (context)=> const BookingJobDetailsScreen())),
-                child: BookingItemView(
-                  mechanicId: (adminState.adminBookingList?[index].mechanicId ?? 0000).toString(),
-                  mechanicName: adminState.adminBookingList?[index].mechanicName ?? "",
-                  email: adminState.adminBookingList?[index].mechanicEmail ?? "",
-                  customerName: adminState.adminBookingList?[index].customerName ?? "",
-                  customerNumber: adminState.adminBookingList?[index].customerPhone ?? "",
-                  startDate: adminState.adminBookingList?[index].startDate ?? "",
-                  endDate: adminState.adminBookingList?[index].endDate ?? ""
-                )
-            );
-          }
+      child: Skeletonizer(
+        enabled: adminState.isLoading,
+        child: ListView.builder(
+            itemCount: adminState.adminBookingList?.length,
+            itemBuilder: (context,index){
+              return WidgetBounce(
+                  onPressed: ()=> Navigator.push(context,CupertinoPageRoute(builder: (context)=> const BookingJobDetailsScreen())),
+                  child: BookingItemView(
+                    mechanicId: (adminState.adminBookingList?[index].mechanicId ?? 0000).toString(),
+                    mechanicName: adminState.adminBookingList?[index].mechanicName ?? "",
+                    email: adminState.adminBookingList?[index].mechanicEmail ?? "",
+                    customerName: adminState.adminBookingList?[index].customerName ?? "",
+                    customerNumber: adminState.adminBookingList?[index].customerPhone ?? "",
+                    startDate: adminState.adminBookingList?[index].startDate ?? "",
+                    endDate: adminState.adminBookingList?[index].endDate ?? ""
+                  )
+              );
+            }
+        ),
       ),
     );
   }
