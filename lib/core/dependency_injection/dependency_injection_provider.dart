@@ -8,3 +8,7 @@ final authenticationProvider =
 final adminProvider =
   StateNotifierProvider<AdminStateNotifier,AdminState>(
           (ref) => AdminStateNotifier(adminDomain: getIt())..init());
+
+final mechanicProvider =
+  StateNotifierProvider<MechanicStateNotifier,MechanicState>(
+          (ref) => MechanicStateNotifier(mechanicDomain: getIt())..init());
