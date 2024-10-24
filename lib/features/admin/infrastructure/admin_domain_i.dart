@@ -8,4 +8,8 @@ class AdminDomainI extends AdminDomain{
   Future<List<UserModel>?> getAllMechanic() async =>
       await FirebaseServices().getAllMechanic();
 
+  @override
+  Future<void> createBookingService({required Map<String, dynamic> body}) async =>
+      await FirebaseServices().createBookingServices(body: body);
+
 }
