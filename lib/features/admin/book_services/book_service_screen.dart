@@ -11,9 +11,13 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class BookServiceScreen extends HookConsumerWidget {
   final int mechanicId;
+  final String mechanicName;
+  final String mechanicEmail;
   const BookServiceScreen({
     super.key,
-    required this.mechanicId
+    required this.mechanicId,
+    required this.mechanicName,
+    required this.mechanicEmail
   });
 
   @override
@@ -66,6 +70,8 @@ class BookServiceScreen extends HookConsumerWidget {
                   stepStyle: const StepStyle(color: Colors.green),
                   content: BookingStep3(
                     mechanicId: mechanicId,
+                    mechanicName: mechanicName,
+                    mechanicEmail: mechanicEmail,
                   )
               ),
 
