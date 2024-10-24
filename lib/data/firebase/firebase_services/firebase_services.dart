@@ -91,6 +91,27 @@ class FirebaseServices {
   }
 
 
+  // Future<List<Booking>> fetchBookings() async {
+  //   try {
+  //     // Fetch all documents from the 'bookings' collection
+  //     QuerySnapshot snapshot = await FirebaseFirestore.instance.collection('bookings').get();
+  //
+  //     // Map the documents into a list of Booking objects
+  //     List<Booking> bookings = snapshot.docs.map((doc) {
+  //       return Booking.fromJson(doc.data() as Map<String, dynamic>);
+  //     }).toList();
+  //
+  //     return bookings;
+  //   } catch (e) {
+  //     print('Error fetching bookings: $e');
+  //     return [];
+  //   }
+  // }
+
+
+
+
+
 
 
 

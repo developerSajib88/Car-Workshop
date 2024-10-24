@@ -1,4 +1,5 @@
 import 'package:feature_first/app/app.dart';
+import 'package:feature_first/common/global/validation/forms_validation.dart';
 import 'package:feature_first/common/widgets/buttons/widget_bounce.dart';
 import 'package:feature_first/common/widgets/text_form_fields/primary_text_form_fields.dart';
 import 'package:feature_first/core/dependency_injection/dependency_injection.dart';
@@ -6,6 +7,7 @@ import 'package:feature_first/utils/constants/ui_constants.dart';
 import 'package:feature_first/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
 class BookingStep1 extends HookConsumerWidget {
   const BookingStep1({super.key});
@@ -13,7 +15,7 @@ class BookingStep1 extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
 
-    GlobalKey<FormState> formKey = GlobalKey<FormState>();
+    final formKey = useMemoized(() => GlobalKey<FormState>());
 
     final adminState = ref.watch(adminProvider);
     final adminCtrl = ref.read(adminProvider.notifier);
@@ -30,6 +32,10 @@ class BookingStep1 extends HookConsumerWidget {
             title: "Booking Title",
             hintText: "e.g.Full Car Service, Oil Change",
             minLines: 4,
+            validator: (value)=> FormValidation(
+                validationType: ValidationType.name,
+                formValue: value
+            ).validate(),
           ),
 
           gap8,
@@ -38,7 +44,11 @@ class BookingStep1 extends HookConsumerWidget {
               controller: adminState.startDateTimeController,
               isRequired: true,
               title: "Start Date & Time",
-              hintText: "e.g.2024-10-20 09:00 AM"
+              hintText: "e.g.2024-10-20 09:00 AM",
+              validator: (value)=> FormValidation(
+                  validationType: ValidationType.name,
+                  formValue: value
+              ).validate(),
           ),
 
           gap8,
@@ -47,7 +57,11 @@ class BookingStep1 extends HookConsumerWidget {
               controller: adminState.endDateTimeController,
               isRequired: true,
               title: "End Date & Time",
-              hintText: "e.g., 2024-10-20 11:00 AM"
+              hintText: "e.g., 2024-10-20 11:00 AM",
+              validator: (value)=> FormValidation(
+                  validationType: ValidationType.name,
+                  formValue: value
+              ).validate(),
           ),
 
           gap12,
