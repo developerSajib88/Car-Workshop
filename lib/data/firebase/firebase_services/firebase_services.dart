@@ -93,7 +93,7 @@ class FirebaseServices {
   }
 
 
-  Future<List<BookingModel>?> fetchAllBookings({required int adminId}) async {
+  Future<List<BookingModel>?> fetchAdminBookings({required int adminId}) async {
     try {
       QuerySnapshot querySnapshot = await FirebaseCollections.bookings.where('admin_id', isEqualTo: adminId).get();
       List<BookingModel> bookings = querySnapshot.docs.map((doc) {
