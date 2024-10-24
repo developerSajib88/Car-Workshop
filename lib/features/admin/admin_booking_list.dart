@@ -32,7 +32,22 @@ class AdminBookingList extends HookConsumerWidget {
             itemCount: adminState.adminBookingList?.length,
             itemBuilder: (context,index){
               return WidgetBounce(
-                  onPressed: ()=> Navigator.push(context,CupertinoPageRoute(builder: (context)=> const BookingJobDetailsScreen())),
+
+                  onPressed: ()=> Navigator.push(context,CupertinoPageRoute(builder:
+                      (context)=> BookingJobDetailsScreen(
+                        bookingTitle: adminState.adminBookingList?[index].bookingTitle ?? "",
+                        startDate: adminState.adminBookingList?[index].startDate ?? "",
+                        endDate: adminState.adminBookingList?[index].endDate ?? "",
+                        customerName: adminState.adminBookingList?[index].customerName ?? "",
+                        customerPhone: adminState.adminBookingList?[index].customerPhone ?? "",
+                        customerEmail: adminState.adminBookingList?[index].customerEmail ?? "",
+                        carCompany: adminState.adminBookingList?[index].carCompany ?? "",
+                        carModel: adminState.adminBookingList?[index].carModel ?? "",
+                        registrationPlate: adminState.adminBookingList?[index].registrationPlates ?? "",
+                        carYear: adminState.adminBookingList?[index].carYear ?? "",
+                      )
+                  )),
+
                   child: BookingItemView(
                     mechanicId: (adminState.adminBookingList?[index].mechanicId ?? 0000).toString(),
                     mechanicName: adminState.adminBookingList?[index].mechanicName ?? "",

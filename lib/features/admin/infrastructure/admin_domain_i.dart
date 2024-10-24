@@ -7,14 +7,14 @@ class AdminDomainI extends AdminDomain{
 
   @override
   Future<List<UserModel>?> getAllMechanic() async =>
-      await FirebaseServices().getAllMechanic();
+      await FirebaseServices.getAllMechanic();
 
   @override
   Future<bool?> createBookingService({required Map<String, dynamic> body}) async =>
-      await FirebaseServices().createBookingServices(body: body);
+      await FirebaseServices.createBookingServices(body: body);
 
   @override
   Future<List<BookingModel>?> getAdminBookingList({required int adminId}) async =>
-      await FirebaseServices().fetchAdminBookings(adminId: adminId);
+      await FirebaseServices.fetchAdminBookings(adminId: adminId);
 
 }
