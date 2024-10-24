@@ -13,7 +13,7 @@ class FirebaseServices {
     required Map<String, dynamic> body,
   }) async {
 
-    String email = body['email'];
+    String email = body["email"];
 
     QuerySnapshot querySnapshot = await collection.where("email", isEqualTo: email).limit(1).get();
     if (querySnapshot.docs.isNotEmpty) {
@@ -95,7 +95,7 @@ class FirebaseServices {
 
   static Future<List<BookingModel>?> fetchAdminBookings({required int adminId}) async {
     try {
-      QuerySnapshot querySnapshot = await FirebaseCollections.bookings.where('admin_id', isEqualTo: adminId).get();
+      QuerySnapshot querySnapshot = await FirebaseCollections.bookings.where("admin_id", isEqualTo: adminId).get();
       List<BookingModel> bookings = querySnapshot.docs.map((doc) {
         return BookingModel.fromJson(doc.data() as Map<String, dynamic>);
       }).toList();
@@ -109,7 +109,7 @@ class FirebaseServices {
 
  static Future<List<BookingModel>?> fetchMechanicBookingsJob({required int mechanicId}) async {
     try {
-      QuerySnapshot querySnapshot = await FirebaseCollections.bookings.where('mechanic_id', isEqualTo: mechanicId).get();
+      QuerySnapshot querySnapshot = await FirebaseCollections.bookings.where("mechanic_id", isEqualTo: mechanicId).get();
       List<BookingModel> bookings = querySnapshot.docs.map((doc) {
         return BookingModel.fromJson(doc.data() as Map<String, dynamic>);
       }).toList();
