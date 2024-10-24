@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:feature_first/data/model/booking_model.dart';
 import 'package:feature_first/data/model/user_model.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -16,6 +17,7 @@ class AdminState extends Equatable{
   final TextEditingController customerPhoneController;
   final TextEditingController customerEmailController;
   final List<UserModel?>? mechanicList;
+  final List<BookingModel>? adminBookingList;
 
   const AdminState({
     required this.isLoading,
@@ -31,6 +33,7 @@ class AdminState extends Equatable{
     required this.customerPhoneController,
     required this.customerEmailController,
     required this.mechanicList,
+    required this.adminBookingList
   });
 
   @override
@@ -47,6 +50,7 @@ class AdminState extends Equatable{
     customerPhoneController,
     customerEmailController,
     mechanicList,
+    adminBookingList
   ];
 
   factory AdminState.init()=> AdminState(
@@ -63,6 +67,7 @@ class AdminState extends Equatable{
       customerEmailController: TextEditingController(),
       customerPhoneController: TextEditingController(),
       mechanicList: null,
+      adminBookingList: null
   );
 
   AdminState copyWith({
@@ -78,7 +83,8 @@ class AdminState extends Equatable{
     TextEditingController? customerNameController,
     TextEditingController? customerPhoneController,
     TextEditingController? customerEmailController,
-    List<UserModel?>? mechanicList
+    List<UserModel?>? mechanicList,
+    List<BookingModel>? adminBookingList
   })=> AdminState(
       isLoading: isLoading ?? this.isLoading,
       stepNumber: stepNumber ?? this.stepNumber,
@@ -93,6 +99,7 @@ class AdminState extends Equatable{
       customerPhoneController: customerNameController ?? this.customerPhoneController,
       customerEmailController: customerEmailController ?? this.customerEmailController,
       mechanicList: mechanicList ?? this.mechanicList,
+      adminBookingList: adminBookingList ?? this.adminBookingList
   );
 
 }
