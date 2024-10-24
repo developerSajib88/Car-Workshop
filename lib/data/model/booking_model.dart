@@ -1,36 +1,36 @@
 class BookingModel {
-  String bookingId;
-  String adminId;
-  String mechanicId;
-  String mechanicName;
-  String mechanicEmail;
-  String bookingTitle;
-  String startDate;
-  String endDate;
-  String carCompany;
-  String carModel;
-  String carYear;
-  String registrationPlates;
-  String customerName;
-  String customerPhone;
-  String customerEmail;
+  int? bookingId;
+  int? adminId;
+  int? mechanicId;
+  String? mechanicName;
+  String? mechanicEmail;
+  String? bookingTitle;
+  String? startDate;
+  String? endDate;
+  String? carCompany;
+  String? carModel;
+  String? carYear;
+  String? registrationPlates;
+  String? customerName;
+  String? customerPhone;
+  String? customerEmail;
 
   BookingModel({
-    required this.bookingId,
-    required this.adminId,
-    required this.mechanicId,
-    required this.mechanicName,
-    required this.mechanicEmail,
-    required this.bookingTitle,
-    required this.startDate,
-    required this.endDate,
-    required this.carCompany,
-    required this.carModel,
-    required this.carYear,
-    required this.registrationPlates,
-    required this.customerName,
-    required this.customerPhone,
-    required this.customerEmail,
+    this.bookingId,
+    this.adminId,
+    this.mechanicId,
+    this.mechanicName,
+    this.mechanicEmail,
+    this.bookingTitle,
+    this.startDate,
+    this.endDate,
+    this.carCompany,
+    this.carModel,
+    this.carYear,
+    this.registrationPlates,
+    this.customerName,
+    this.customerPhone,
+    this.customerEmail,
   });
 
   // Factory constructor to create a Booking object from a JSON map

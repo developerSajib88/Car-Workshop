@@ -6,10 +6,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class BookingItemView extends StatelessWidget {
-  const BookingItemView({super.key});
+  final String mechanicId;
+  final String mechanicName;
+  final String email;
+  final String customerName;
+  final String customerNumber;
+  final String startDate;
+  final String endDate;
+  const BookingItemView({
+    super.key,
+    required this.mechanicId,
+    required this.mechanicName,
+    required this.email,
+    required this.customerName,
+    required this.customerNumber,
+    required this.startDate,
+    required this.endDate,
+  });
 
   @override
   Widget build(BuildContext context) {
+
     return BackgroundContainer(
       padding: padding6,
       margin: paddingBottom6,
