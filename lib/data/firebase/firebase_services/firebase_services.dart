@@ -66,7 +66,7 @@ class FirebaseServices {
   }
 
 
-  Future<List<UserModel>?> getAllMechanic() async {
+  static Future<List<UserModel>?> getAllMechanic() async {
     try {
       QuerySnapshot querySnapshot = await FirebaseCollections.mechanic.get();
       List<UserModel> allDocuments = querySnapshot.docs.map((doc) {
@@ -79,7 +79,7 @@ class FirebaseServices {
     }
   }
 
-  Future<bool?> createBookingServices({required Map<String,dynamic> body})async{
+  static Future<bool?> createBookingServices({required Map<String,dynamic> body})async{
     try{
       await FirebaseMethods().add(
           collection: FirebaseCollections.bookings,
@@ -93,7 +93,7 @@ class FirebaseServices {
   }
 
 
-  Future<List<BookingModel>?> fetchAdminBookings({required int adminId}) async {
+  static Future<List<BookingModel>?> fetchAdminBookings({required int adminId}) async {
     try {
       QuerySnapshot querySnapshot = await FirebaseCollections.bookings.where('admin_id', isEqualTo: adminId).get();
       List<BookingModel> bookings = querySnapshot.docs.map((doc) {
@@ -106,6 +106,21 @@ class FirebaseServices {
       return null;
     }
   }
+
+ static Future<List<BookingModel>?> fetchMechanicBookingsJob({required int mechanicId}) async {
+    try {
+      QuerySnapshot querySnapshot = await FirebaseCollections.bookings.where('mechanic_id', isEqualTo: mechanicId).get();
+      List<BookingModel> bookings = querySnapshot.docs.map((doc) {
+        return BookingModel.fromJson(doc.data() as Map<String, dynamic>);
+      }).toList();
+
+      return bookings;
+    } catch (e) {
+      CustomLog.errorPrint(e);
+      return null;
+    }
+  }
+
 
 
 
