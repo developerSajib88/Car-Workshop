@@ -1,3 +1,4 @@
+import 'package:feature_first/common/global/functions/global_functions.dart';
 import 'package:feature_first/features/admin/application/admin_state.dart';
 import 'package:feature_first/features/admin/domain/admin_domain.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -35,11 +36,12 @@ class AdminStateNotifier extends StateNotifier<AdminState>{
    stateMaker(state.copyWith(isLoading: false));
   }
 
-  Future adminBookingService({required int adminId, required int mechanicId})async{
+  Future<bool?> createBookingService({required int adminId, required int mechanicId})async{
     stateMaker(state.copyWith(isLoading: true));
     Map<String,dynamic> body = {
+      "booking_id" : GlobalFunctions.generateRandomUserId(),
       "admin_id" : adminId,
-      "mechanicId" : mechanicId,
+      "mechanic_id" : mechanicId,
       "booking_title" : state.titleController.text,
       "start_date" : state.startDateTimeController.text,
       "end_date" : state.endDateTimeController.text,
@@ -51,8 +53,10 @@ class AdminStateNotifier extends StateNotifier<AdminState>{
       "customer_phone" : state.customerPhoneController.text,
       "customer_email" : state.customerEmailController.text
     };
-    await adminDomain.createBookingService(body: body);
+    bool success = false;
+    await adminDomain.createBookingService(body: body).then((value)=> success = value ?? false);
     stateMaker(state.copyWith(isLoading: false));
+    return success;
   }
 
 

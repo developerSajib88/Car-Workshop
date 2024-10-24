@@ -2,19 +2,27 @@ import 'package:feature_first/common/global/validation/forms_validation.dart';
 import 'package:feature_first/common/widgets/buttons/widget_bounce.dart';
 import 'package:feature_first/common/widgets/text_form_fields/primary_text_form_fields.dart';
 import 'package:feature_first/core/dependency_injection/dependency_injection.dart';
+import 'package:feature_first/features/dashboard/dashboard_screen.dart';
 import 'package:feature_first/utils/constants/ui_constants.dart';
 import 'package:feature_first/utils/utils.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
 class BookingStep3 extends HookConsumerWidget {
-  const BookingStep3({super.key});
+  final int mechanicId;
+  const BookingStep3({
+    super.key,
+    required this.mechanicId
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
 
-    GlobalKey<FormState> formKey = GlobalKey<FormState>();
+    final formKey = useMemoized(() => GlobalKey<FormState>());
 
+    final authenticationState = ref.watch(authenticationProvider);
     final adminState = ref.watch(adminProvider);
     final adminCtrl = ref.read(adminProvider.notifier);
 
@@ -67,10 +75,17 @@ class BookingStep3 extends HookConsumerWidget {
           WidgetBounce(
             onPressed: (){
               if(formKey.currentState!.validate()){
-
+                adminCtrl.createBookingService(
+                    adminId: authenticationState.userModel?.userId ?? 00000,
+                    mechanicId: mechanicId,
+                ).then((value){
+                  if(value ?? false){
+                    Navigator.pushReplacement(context, CupertinoPageRoute(builder: (context)=> const DashboardScreen()));
+                  }
+                });
               }
             },
-            child: Container(
+            child:Container(
               width: 60.w,
               height: 25.h,
               alignment: Alignment.center,
@@ -78,9 +93,21 @@ class BookingStep3 extends HookConsumerWidget {
                   color: Colors.green,
                   borderRadius: radius4
               ),
-              child: const Text(
-                "Continue",
-                style: TextStyle(color: Colors.white),
+              child: Visibility(
+                visible: adminState.isLoading,
+                replacement: const Text(
+                  "Continue",
+                  style: TextStyle(color: Colors.white),
+                ),
+                child: Center(
+                    child: SizedBox(
+                        width: 10.w,
+                        height: 10.w,
+                        child: CircularProgressIndicator(
+                          color: ColorPalates.defaultWhite,
+                        )
+                    )
+                ),
               ),
             ),
           )

@@ -9,7 +9,7 @@ class AdminDomainI extends AdminDomain{
       await FirebaseServices().getAllMechanic();
 
   @override
-  Future<void> createBookingService({required Map<String, dynamic> body}) async =>
+  Future<bool?> createBookingService({required Map<String, dynamic> body}) async =>
       await FirebaseServices().createBookingServices(body: body);
 
 }

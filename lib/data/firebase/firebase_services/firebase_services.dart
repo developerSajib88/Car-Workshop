@@ -79,14 +79,16 @@ class FirebaseServices {
     }
   }
 
-  Future createBookingServices({required Map<String,dynamic> body})async{
+  Future<bool?> createBookingServices({required Map<String,dynamic> body})async{
     try{
-      Map<String,dynamic>? firebaseResponse = await FirebaseMethods().add(
+      await FirebaseMethods().add(
           collection: FirebaseCollections.bookings,
           body: body
       );
+      return true;
     }catch(e){
       CustomLog.errorPrint(e);
+      return null;
     }
   }
 

@@ -6,6 +6,7 @@ import 'package:feature_first/utils/constants/ui_constants.dart';
 import 'package:feature_first/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
 class BookingStep2 extends HookConsumerWidget {
   const BookingStep2({super.key});
@@ -13,7 +14,7 @@ class BookingStep2 extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
 
-    GlobalKey<FormState> formKey = GlobalKey<FormState>();
+    final formKey = useMemoized(() => GlobalKey<FormState>());
 
     final adminState = ref.watch(adminProvider);
     final adminCtrl = ref.read(adminProvider.notifier);

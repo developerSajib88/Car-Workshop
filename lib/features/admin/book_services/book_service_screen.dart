@@ -10,7 +10,11 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class BookServiceScreen extends HookConsumerWidget {
-  const BookServiceScreen({super.key});
+  final int mechanicId;
+  const BookServiceScreen({
+    super.key,
+    required this.mechanicId
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -42,15 +46,15 @@ class BookServiceScreen extends HookConsumerWidget {
             controlsBuilder: (context,_){
               return Container();
             },
-            steps: const <Step>[
+            steps: <Step>[
 
-              Step(
+              const Step(
                   title: Text("Booking Details"),
                   stepStyle: StepStyle(color: Colors.green),
                   content: BookingStep1()
               ),
 
-              Step(
+              const Step(
                   title: Text("Car Details"),
                   stepStyle: StepStyle(color: Colors.green),
                   content: BookingStep2()
@@ -58,9 +62,11 @@ class BookServiceScreen extends HookConsumerWidget {
 
 
               Step(
-                  title: Text("Customer Details"),
-                  stepStyle: StepStyle(color: Colors.green),
-                  content: BookingStep3()
+                  title: const Text("Customer Details"),
+                  stepStyle: const StepStyle(color: Colors.green),
+                  content: BookingStep3(
+                    mechanicId: mechanicId,
+                  )
               ),
 
             ]
