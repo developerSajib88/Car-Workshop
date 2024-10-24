@@ -1,13 +1,37 @@
 import 'package:feature_first/common/widgets/components/image_background.dart';
+import 'package:feature_first/common/widgets/data_view_widget.dart';
 import 'package:feature_first/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
 class BookingJobDetailsScreen extends StatelessWidget {
-  const BookingJobDetailsScreen({super.key});
+  final String bookingTitle;
+  final String startDate;
+  final String endDate;
+  final String customerName;
+  final String customerPhone;
+  final String customerEmail;
+  final String carCompany;
+  final String carModel;
+  final String registrationPlate;
+  final String carYear;
+  const BookingJobDetailsScreen({
+    super.key,
+    required this.bookingTitle,
+    required this.startDate,
+    required this.endDate,
+    required this.customerName,
+    required this.customerPhone,
+    required this.customerEmail,
+    required this.carCompany,
+    required this.carModel,
+    required this.registrationPlate,
+    required this.carYear
+  });
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: ColorPalates.primaryColor,
@@ -47,325 +71,112 @@ class BookingJobDetailsScreen extends StatelessWidget {
                   children: [
 
                     Text(
-                        "Objective: Develop a cross-platform mobile application for a car workshop where users",
+                      bookingTitle,
                       style: CustomTextStyles.primaryTextStylesBold,
                       textAlign: TextAlign.left,
                     ),
 
                     const Divider(),
 
+                    DataViewWidget(
+                        data: startDate,
+                        dataTitle: "Start DateTime",
+                        iconBackground: const Color(0xffEAFAEC),
+                        iconColor: const Color(0xff26CD3F),
+                        icon: Icons.calendar_month
+                    ),
 
-                    Row(
-                      children: [
-                        const CircleAvatar(
-                            backgroundColor: Color(0xffEAFAEC),
-                            child: Icon(
-                              Icons.calendar_month,
-                              color: Color(0xff26CD3F),
-                            )
-                        ),
 
-                        gap6,
+                    gap4,
 
-                        Column(
-                          crossAxisAlignment: crossStart,
-                          children: [
-                            Text(
-                              "Start DateTime",
-                              style: CustomTextStyles.primaryTextStylesBold.copyWith(
-                                  fontSize: 7.sp
-                              ),
-                            ),
+                    DataViewWidget(
+                        data: endDate,
+                        dataTitle: "End DateTime  ",
+                        iconBackground: const Color(0xffFFECEB),
+                        iconColor: const Color(0xffFF2F24),
+                        icon: Icons.date_range
+                    ),
 
-                            Text(
-                              "12 Jan 20245",
-                              style: CustomTextStyles.descriptionTextStyles,
-                            )
+                    gap4,
 
-                          ],
-                        )
-                      ],
+                    DataViewWidget(
+                        data: customerName,
+                        dataTitle: "Customer Name  ",
+                        iconBackground: const Color(0xffE6F2FF),
+                        iconColor: const Color(0xff097FFF),
+                        icon: Icons.account_circle_outlined
                     ),
 
 
                     gap4,
 
 
-                    Row(
-                      children: [
-                        const CircleAvatar(
-                            backgroundColor: Color(0xffFFECEB),
-                            child: Icon(
-                              Icons.date_range,
-                              color: Color(0xffFF2F24),
-                            )
-                        ),
-
-                        gap6,
-
-                        Column(
-                          crossAxisAlignment: crossStart,
-                          children: [
-                            Text(
-                              "End DateTime  ",
-                              style: CustomTextStyles.primaryTextStylesBold.copyWith(
-                                  fontSize: 7.sp
-                              ),
-                            ),
-
-                            Text(
-                              "12 Jan 20245",
-                              style: CustomTextStyles.descriptionTextStyles,
-                            )
-
-                          ],
-                        )
-                      ],
+                    DataViewWidget(
+                        data: customerPhone,
+                        dataTitle: "Phone Number",
+                        iconBackground: const Color(0xffFFF4E6),
+                        iconColor: const Color(0xffFFB259),
+                        icon: Icons.phone_in_talk_rounded
                     ),
 
-                    gap4,
 
-                    Row(
-                      children: [
-                        const CircleAvatar(
-                            backgroundColor: Color(0xffE6F2FF),
-                            child: Icon(
-                              Icons.account_circle_outlined,
-                              color: Color(0xff097FFF),
-                            )
-                        ),
-
-                        gap6,
-
-                        Column(
-                          crossAxisAlignment: crossStart,
-                          children: [
-                            Text(
-                              "Custom Name",
-                              style: CustomTextStyles.primaryTextStylesBold.copyWith(
-                                  fontSize: 7.sp
-                              ),
-                            ),
-
-                            Text(
-                              "Sajib Hasan",
-                              style: CustomTextStyles.descriptionTextStyles,
-                            )
-
-                          ],
-                        )
-                      ],
-                    ),
 
                     gap4,
 
 
-                    Row(
-                      children: [
-                        const CircleAvatar(
-                            backgroundColor: Color(0xffFFF4E6),
-                            child: Icon(
-                              Icons.phone_in_talk_rounded,
-                              color: Color(0xffFFB259),
-                            )
-                        ),
-
-                        gap6,
-
-                        Column(
-                          crossAxisAlignment: crossStart,
-                          children: [
-                            Text(
-                              "Phone Number",
-                              style: CustomTextStyles.primaryTextStylesBold.copyWith(
-                                  fontSize: 7.sp
-                              ),
-                            ),
-
-                            Text(
-                              "01925561258",
-                              style: CustomTextStyles.descriptionTextStyles,
-                            )
-
-                          ],
-                        )
-                      ],
+                    DataViewWidget(
+                        data: customerEmail,
+                        dataTitle: "Customer Email",
+                        iconBackground: const Color(0xffEAFAEC),
+                        iconColor: const Color(0xff26CD3F),
+                        icon: Icons.mail_outline_rounded
                     ),
 
-                    gap4,
-
-
-                    Row(
-                      children: [
-                        const CircleAvatar(
-                            backgroundColor: Color(0xffEAFAEC),
-                            child: Icon(
-                              Icons.mail_outline_rounded,
-                              color: Color(0xff26CD3F),
-                            )
-                        ),
-
-                        gap6,
-
-                        Column(
-                          crossAxisAlignment: crossStart,
-                          children: [
-                            Text(
-                              "Customer Email",
-                              style: CustomTextStyles.primaryTextStylesBold.copyWith(
-                                  fontSize: 7.sp
-                              ),
-                            ),
-
-                            Text(
-                              "developersajib88@gmail.com",
-                              style: CustomTextStyles.descriptionTextStyles,
-                            )
-
-                          ],
-                        )
-                      ],
-                    ),
 
 
                     const Divider(),
 
-
-                    Row(
-                      children: [
-                        const CircleAvatar(
-                            backgroundColor: Color(0xffE6F2FF),
-                            child: Icon(
-                              Icons.precision_manufacturing,
-                              color: Color(0xff097FFF),
-                            )
-                        ),
-
-                        gap6,
-
-                        Column(
-                          crossAxisAlignment: crossStart,
-                          children: [
-                            Text(
-                              "Company",
-                              style: CustomTextStyles.primaryTextStylesBold.copyWith(
-                                  fontSize: 7.sp
-                              ),
-                            ),
-
-                            Text(
-                              "Tesla Cybertruck",
-                              style: CustomTextStyles.descriptionTextStyles,
-                            )
-
-                          ],
-                        )
-                      ],
-                    ),
-
-                    gap4,
-
-                    Row(
-                      children: [
-                        const CircleAvatar(
-                            backgroundColor: Color(0xffFFF4E6),
-                            child: Icon(
-                              Icons.directions_car_filled_outlined,
-                              color: Color(0xffFFB259),
-                            )
-                        ),
-
-                        gap6,
-
-                        Column(
-                          crossAxisAlignment: crossStart,
-                          children: [
-                            Text(
-                              "Car Model",
-                              style: CustomTextStyles.primaryTextStylesBold.copyWith(
-                                  fontSize: 7.sp
-                              ),
-                            ),
-
-                            Text(
-                              "Tesla Model S",
-                              style: CustomTextStyles.descriptionTextStyles,
-                            )
-
-                          ],
-                        )
-                      ],
-                    ),
-
-                    gap4,
-
-                    Row(
-                      children: [
-                        const CircleAvatar(
-                            backgroundColor: Color(0xffE6F2FF),
-                            child: Icon(
-                              Icons.app_registration,
-                              color: Color(0xff097FFF),
-                            )
-                        ),
-
-                        gap6,
-
-                        Column(
-                          crossAxisAlignment: crossStart,
-                          children: [
-                            Text(
-                              "Registration Plate",
-                              style: CustomTextStyles.primaryTextStylesBold.copyWith(
-                                  fontSize: 7.sp
-                              ),
-                            ),
-
-                            Text(
-                              "P 68 CC",
-                              style: CustomTextStyles.descriptionTextStyles,
-                            )
-
-                          ],
-                        )
-                      ],
+                    DataViewWidget(
+                        data: carCompany,
+                        dataTitle: "Company",
+                        iconBackground: const Color(0xffE6F2FF),
+                        iconColor: const Color(0xff097FFF),
+                        icon: Icons.precision_manufacturing
                     ),
 
                     gap4,
 
 
-                    Row(
-                      children: [
-                        const CircleAvatar(
-                            backgroundColor: Color(0xffFFF4E6),
-                            child: Icon(
-                              Icons.date_range,
-                              color: Color(0xffFFB259),
-                            )
-                        ),
-
-                        gap6,
-
-                        Column(
-                          crossAxisAlignment: crossStart,
-                          children: [
-                            Text(
-                              "Year",
-                              style: CustomTextStyles.primaryTextStylesBold.copyWith(
-                                  fontSize: 7.sp
-                              ),
-                            ),
-
-                            Text(
-                              "2020",
-                              style: CustomTextStyles.descriptionTextStyles,
-                            )
-
-                          ],
-                        )
-                      ],
+                    DataViewWidget(
+                        data: carModel,
+                        dataTitle: "Car Model",
+                        iconBackground: const Color(0xffFFF4E6),
+                        iconColor: const Color(0xffFFB259),
+                        icon: Icons.directions_car_filled_outlined
                     ),
 
+
+                    gap4,
+
+                    DataViewWidget(
+                        data: registrationPlate,
+                        dataTitle: "Registration Plate",
+                        iconBackground: const Color(0xffE6F2FF),
+                        iconColor: const Color(0xff097FFF),
+                        icon: Icons.app_registration
+                    ),
+
+
+                    gap4,
+
+
+                    DataViewWidget(
+                        data: registrationPlate,
+                        dataTitle: "Registration Plate",
+                        iconBackground: const Color(0xffFFF4E6),
+                        iconColor: const Color(0xffFFB259),
+                        icon: Icons.date_range
+                    ),
 
 
 
