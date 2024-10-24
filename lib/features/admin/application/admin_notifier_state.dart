@@ -36,12 +36,19 @@ class AdminStateNotifier extends StateNotifier<AdminState>{
    stateMaker(state.copyWith(isLoading: false));
   }
 
-  Future<bool?> createBookingService({required int adminId, required int mechanicId})async{
+  Future<bool?> createBookingService({
+    required int adminId,
+    required int mechanicId,
+    required String mechanicName,
+    required String mechanicEmail
+  })async{
     stateMaker(state.copyWith(isLoading: true));
     Map<String,dynamic> body = {
       "booking_id" : GlobalFunctions.generateRandomUserId(),
       "admin_id" : adminId,
       "mechanic_id" : mechanicId,
+      "mechanic_name" : mechanicName,
+      "mechanic_email" : mechanicEmail,
       "booking_title" : state.titleController.text,
       "start_date" : state.startDateTimeController.text,
       "end_date" : state.endDateTimeController.text,
