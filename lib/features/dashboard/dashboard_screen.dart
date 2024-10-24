@@ -3,7 +3,6 @@ import 'package:feature_first/core/dependency_injection/dependency_injection.dar
 import 'package:feature_first/features/admin/admin_booking_list.dart';
 import 'package:feature_first/features/mechanic/mechanic_job_list.dart';
 import 'package:feature_first/utils/constants/ui_constants.dart';
-import 'package:feature_first/utils/styles/color_palates.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
