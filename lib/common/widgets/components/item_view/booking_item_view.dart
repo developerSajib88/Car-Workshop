@@ -1,4 +1,5 @@
 import 'package:feature_first/common/widgets/components/background_container.dart';
+import 'package:feature_first/common/widgets/data_view_widget.dart';
 import 'package:feature_first/utils/constants/ui_constants.dart';
 import 'package:feature_first/utils/styles/color_palates.dart';
 import 'package:feature_first/utils/styles/custom_text_styles.dart';
@@ -57,22 +58,19 @@ class BookingItemView extends StatelessWidget {
                 children: [
 
                   Text(
-                    "Mechanic ID: 230943",
+                    "Mechanic ID: $mechanicId",
                     style: CustomTextStyles.descriptionTextStyles,
                   ),
 
                   Text(
-                    "Mechanic: Sajib Hasan",
+                    "Mechanic: $mechanicName",
                     style: CustomTextStyles.primaryTextStylesBold,
                   ),
 
                   Text(
-                    "Email: developersajib88@gmail.com",
+                    "Email: $email",
                     style: CustomTextStyles.descriptionTextStyles,
                   ),
-
-
-
 
 
                 ],
@@ -92,75 +90,30 @@ class BookingItemView extends StatelessWidget {
           ),
 
           const Divider(),
-          
-          
+
+
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              
-              Row(
-                children: [
-                  const CircleAvatar(
-                    backgroundColor: Color(0xffE6F2FF),
-                      child: Icon(
-                          Icons.account_circle_outlined,
-                          color: Color(0xff097FFF),
-                      )
-                  ),
 
-                  gap6,
 
-                  Column(
-                    crossAxisAlignment: crossStart,
-                    children: [
-                      Text(
-                        "Custom Name",
-                        style: CustomTextStyles.primaryTextStylesBold.copyWith(
-                            fontSize: 7.sp
-                        ),
-                      ),
-
-                      Text(
-                        "Sajib Hasan",
-                        style: CustomTextStyles.descriptionTextStyles,
-                      )
-
-                    ],
-                  )
-                ],
+              DataViewWidget(
+                  data: customerName,
+                  dataTitle: "Customer Name",
+                  iconBackground: const Color(0xffE6F2FF),
+                  iconColor: const Color(0xff097FFF),
+                  icon: Icons.account_circle_outlined
               ),
 
-              Row(
-                children: [
-                  const CircleAvatar(
-                      backgroundColor: Color(0xffFFF4E6),
-                      child: Icon(
-                        Icons.phone_in_talk_rounded,
-                        color: Color(0xffFFB259),
-                      )
-                  ),
 
-                  gap6,
+              DataViewWidget(
+                  data: customerNumber,
+                  dataTitle: "Phone Number",
+                  iconBackground: const Color(0xffFFF4E6),
+                  iconColor: const Color(0xffFFB259),
+                  icon: Icons.phone_in_talk_rounded,
+              ),
 
-                  Column(
-                    crossAxisAlignment: crossStart,
-                    children: [
-                      Text(
-                        "Phone Number",
-                        style: CustomTextStyles.primaryTextStylesBold.copyWith(
-                          fontSize: 7.sp
-                        ),
-                      ),
-
-                      Text(
-                        "01925561258",
-                        style: CustomTextStyles.descriptionTextStyles,
-                      )
-
-                    ],
-                  )
-                ],
-              )
               
             ],
           ),
@@ -171,70 +124,25 @@ class BookingItemView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
 
-              Row(
-                children: [
-                  const CircleAvatar(
-                      backgroundColor: Color(0xffEAFAEC),
-                      child: Icon(
-                        Icons.calendar_month,
-                        color: Color(0xff26CD3F),
-                      )
-                  ),
 
-                  gap6,
-
-                  Column(
-                    crossAxisAlignment: crossStart,
-                    children: [
-                      Text(
-                        "Start DateTime",
-                        style: CustomTextStyles.primaryTextStylesBold.copyWith(
-                            fontSize: 7.sp
-                        ),
-                      ),
-
-                      Text(
-                        "12 Jan 20245",
-                        style: CustomTextStyles.descriptionTextStyles,
-                      )
-
-                    ],
-                  )
-                ],
+              DataViewWidget(
+                data: startDate,
+                dataTitle: "Start DateTime",
+                iconBackground: const Color(0xffEAFAEC),
+                iconColor: const Color(0xff26CD3F),
+                icon: Icons.calendar_month,
               ),
 
 
-              Row(
-                children: [
-                  const CircleAvatar(
-                      backgroundColor: Color(0xffFFECEB),
-                      child: Icon(
-                        Icons.calendar_month,
-                        color: Color(0xffFF2F24),
-                      )
-                  ),
 
-                  gap6,
+              DataViewWidget(
+                data: endDate,
+                dataTitle: "End DateTime  ",
+                iconBackground: const Color(0xffFFECEB),
+                iconColor: const Color(0xffFF2F24),
+                icon: Icons.calendar_month,
+              ),
 
-                  Column(
-                    crossAxisAlignment: crossStart,
-                    children: [
-                      Text(
-                        "End DateTime  ",
-                        style: CustomTextStyles.primaryTextStylesBold.copyWith(
-                            fontSize: 7.sp
-                        ),
-                      ),
-
-                      Text(
-                        "12 Jan 20245",
-                        style: CustomTextStyles.descriptionTextStyles,
-                      )
-
-                    ],
-                  )
-                ],
-              )
 
             ],
           )
