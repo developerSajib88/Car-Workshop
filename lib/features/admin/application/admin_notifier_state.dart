@@ -1,4 +1,5 @@
 import 'package:feature_first/common/global/functions/global_functions.dart';
+import 'package:feature_first/data/local_database/get_local_database.dart';
 import 'package:feature_first/features/admin/application/admin_state.dart';
 import 'package:feature_first/features/admin/domain/admin_domain.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -64,6 +65,19 @@ class AdminStateNotifier extends StateNotifier<AdminState>{
     await adminDomain.createBookingService(body: body).then((value)=> success = value ?? false);
     stateMaker(state.copyWith(isLoading: false));
     return success;
+  }
+
+
+  Future<void> getAdminBookingList()async{
+    stateMaker(state.copyWith(isLoading: true));
+    await adminDomain.getAdminBookingList(
+        adminId: GetLocalDatabase().userId() ?? 0000
+    ).then((value){
+      stateMaker(state.copyWith(
+        adminBookingList: value
+      ));
+    });
+    stateMaker(state.copyWith(isLoading: false));
   }
 
 
