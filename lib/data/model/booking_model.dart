@@ -1,6 +1,9 @@
-class Booking {
+class BookingModel {
+  String bookingId;
   String adminId;
   String mechanicId;
+  String mechanicName;
+  String mechanicEmail;
   String bookingTitle;
   String startDate;
   String endDate;
@@ -12,9 +15,12 @@ class Booking {
   String customerPhone;
   String customerEmail;
 
-  Booking({
+  BookingModel({
+    required this.bookingId,
     required this.adminId,
     required this.mechanicId,
+    required this.mechanicName,
+    required this.mechanicEmail,
     required this.bookingTitle,
     required this.startDate,
     required this.endDate,
@@ -27,11 +33,14 @@ class Booking {
     required this.customerEmail,
   });
 
-  // Factory constructor to create a Booking object from a map
-  factory Booking.fromJson(Map<String, dynamic> json) {
-    return Booking(
+  // Factory constructor to create a Booking object from a JSON map
+  factory BookingModel.fromJson(Map<String, dynamic> json) {
+    return BookingModel(
+      bookingId: json['booking_id'],
       adminId: json['admin_id'],
-      mechanicId: json['mechanicId'],
+      mechanicId: json['mechanic_id'],
+      mechanicName: json['mechanic_name'],
+      mechanicEmail: json['mechanic_email'],
       bookingTitle: json['booking_title'],
       startDate: json['start_date'],
       endDate: json['end_date'],
@@ -45,11 +54,14 @@ class Booking {
     );
   }
 
-  // Method to convert a Booking object to a map
+  // Method to convert a Booking object to a JSON map
   Map<String, dynamic> toJson() {
     return {
+      'booking_id': bookingId,
       'admin_id': adminId,
-      'mechanicId': mechanicId,
+      'mechanic_id': mechanicId,
+      'mechanic_name': mechanicName,
+      'mechanic_email': mechanicEmail,
       'booking_title': bookingTitle,
       'start_date': startDate,
       'end_date': endDate,
