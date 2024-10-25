@@ -5,6 +5,9 @@ import 'package:feature_first/data/firebase/firbase_methods/firebase_methods.dar
 import 'package:feature_first/data/firebase/firebase_collections/firebase_collections.dart';
 import 'package:feature_first/data/model/booking_model.dart';
 import 'package:feature_first/data/model/user_model.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'dart:io';
+
 
 class FirebaseServices {
 
@@ -122,7 +125,21 @@ class FirebaseServices {
 
 
 
+  static Future<String?> uploadImageToFirebase(File image) async {
+    try {
+      final storageRef = FirebaseStorage.instance
+          .ref()
+          .child('profile_images/${DateTime.now().millisecondsSinceEpoch}.jpg');
 
+      await storageRef.putFile(image);
+
+      String downloadURL = await storageRef.getDownloadURL();
+      return downloadURL;
+    } catch (e) {
+      print('Error uploading image: $e');
+      return null;
+    }
+  }
 
 
 
