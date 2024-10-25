@@ -18,7 +18,7 @@ class FirebaseServices {
     QuerySnapshot querySnapshot = await collection.where("email", isEqualTo: email).limit(1).get();
     if (querySnapshot.docs.isNotEmpty) {
       CustomLog.errorPrint("Account already exists with the email: $email");
-      GlobalFunctions().showWarningToast("Account already exists with the email: $email");
+      GlobalFunctions.showWarningToast("Account already exists with the email: $email");
       return null;
     }
 

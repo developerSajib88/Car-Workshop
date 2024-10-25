@@ -41,7 +41,6 @@ class BookingStep3 extends HookConsumerWidget {
             isRequired: true,
             title: "Name",
             hintText: "e.g,John Doe",
-            minLines: 4,
             validator: (value)=> FormValidation(
                 validationType: ValidationType.name,
                 formValue: value

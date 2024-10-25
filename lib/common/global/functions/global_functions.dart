@@ -1,6 +1,5 @@
 import 'dart:math';
-
-import 'package:feature_first/app/app.dart';
+import 'package:intl/intl.dart';
 import 'package:feature_first/utils/styles/color_palates.dart';
 import 'package:feature_first/utils/utils.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -12,7 +11,12 @@ class GlobalFunctions {
     return randomId;
   }
 
-  void showWarningToast(String message) {
+  static String formatDate(DateTime date) {
+    final DateFormat formatter = DateFormat('d MMMM yyyy');
+    return formatter.format(date);
+  }
+
+  static void showWarningToast(String message) {
     Fluttertoast.showToast(
         msg: message,
         toastLength: Toast.LENGTH_SHORT,
@@ -23,6 +27,7 @@ class GlobalFunctions {
         fontSize: 10.sp
     );
   }
+
 
 
 }
