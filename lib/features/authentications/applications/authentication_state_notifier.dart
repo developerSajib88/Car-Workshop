@@ -32,11 +32,12 @@ class AuthenticationStateNotifier extends StateNotifier<AuthenticationState>{
     stateMaker(
       state.copyWith(
         userModel: UserModel(
+            profileImage: GetLocalDatabase().userProfileImage() ?? "https://img.freepik.com/free-photo/smiling-auto-mechanic-with-wrench-standing-hands-folded-white-background_662251-2939.jpg",
             userId: GetLocalDatabase().userId() ?? 12348,
             userType: GetLocalDatabase().userType() ?? "",
             name: GetLocalDatabase().userName() ?? "",
             email: GetLocalDatabase().userEmail() ?? "",
-            password: "123456"
+            password: GetLocalDatabase().userPass() ?? "123456"
         ),
       )
     );
@@ -44,6 +45,7 @@ class AuthenticationStateNotifier extends StateNotifier<AuthenticationState>{
 
 
   Future<String?> profilePictureUpload({required File imageFile})async{
+    stateMaker(state.copyWith(isLoading: true));
     return await authenticationDom.profilePictureUpload(imageFile: imageFile);
   }
 
@@ -64,9 +66,19 @@ class AuthenticationStateNotifier extends StateNotifier<AuthenticationState>{
         FirebaseCollections.admin : FirebaseCollections.mechanic,
         updatedData: body
     ).then((value){
-      stateMaker(state.copyWith(
-        userModel: value
-      ));
+      if(value != null){
+        SetLocalDatabase().userIsLogin(true);
+        SetLocalDatabase().userId(value.userId ?? 0000);
+        SetLocalDatabase().userName(value.name ?? "Not Given");
+        SetLocalDatabase().userEmail(value.email ?? "Not Given");
+        SetLocalDatabase().userType(value.userType ?? "Admin");
+        SetLocalDatabase().userPassword(value.password ?? "123456");
+        SetLocalDatabase().userProfilePicture(value.profileImage ?? "");
+        stateMaker(state.copyWith(
+            userModel: value
+        ));
+        setUserData();
+      }
     });
     stateMaker(state.copyWith(isLoading: false));
   }
@@ -97,6 +109,9 @@ class AuthenticationStateNotifier extends StateNotifier<AuthenticationState>{
         SetLocalDatabase().userName(value.name ?? "Not Given");
         SetLocalDatabase().userEmail(value.email ?? "Not Given");
         SetLocalDatabase().userType(value.userType ?? "Admin");
+        SetLocalDatabase().userPassword(value.password ?? "123456");
+        SetLocalDatabase().userProfilePicture(value.profileImage ??
+            "https://img.freepik.com/free-photo/smiling-auto-mechanic-with-wrench-standing-hands-folded-white-background_662251-2939.jpg");
         authSuccess = true;
       }
     });
@@ -109,6 +124,7 @@ class AuthenticationStateNotifier extends StateNotifier<AuthenticationState>{
     stateMaker(state.copyWith(isLoading: true));
     bool authSuccess = false;
     Map<String,dynamic> body = {
+      "profile" : "https://img.freepik.com/free-photo/smiling-auto-mechanic-with-wrench-standing-hands-folded-white-background_662251-2939.jpg",
       "user_id" : GlobalFunctions.generateRandomUserId(),
       "user_type" : state.selectedUserType ?? "Admin",
       "name": state.userNameController.text,
@@ -127,6 +143,8 @@ class AuthenticationStateNotifier extends StateNotifier<AuthenticationState>{
         SetLocalDatabase().userName(value.name ?? "Not Given");
         SetLocalDatabase().userEmail(value.email ?? "Not Given");
         SetLocalDatabase().userType(value.userType ?? "Admin");
+        SetLocalDatabase().userPassword(value.password ?? "123456");
+        SetLocalDatabase().userProfilePicture(value.profileImage ?? "");
         authSuccess = true;
       }
     });
