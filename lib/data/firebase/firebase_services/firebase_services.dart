@@ -113,7 +113,6 @@ class FirebaseServices {
       List<BookingModel> bookings = querySnapshot.docs.map((doc) {
         return BookingModel.fromJson(doc.data() as Map<String, dynamic>);
       }).toList();
-
       return bookings;
     } catch (e) {
       CustomLog.errorPrint(e);
