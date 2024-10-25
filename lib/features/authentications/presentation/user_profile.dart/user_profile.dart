@@ -20,6 +20,11 @@ class UserProfile extends HookConsumerWidget {
     final authenticationState = ref.watch(authenticationProvider);
     final authenticationCtrl = ref.read(authenticationProvider.notifier);
 
+    useEffect((){
+      Future.microtask(()=> authenticationCtrl.setUserProfileInfo());
+      return null;
+    },[]);
+
     return Container(
       width: 1.sw,
       height: 1.sh,
@@ -64,7 +69,7 @@ class UserProfile extends HookConsumerWidget {
 
 
             Text(
-              "ID: 593493",
+              "${authenticationState.userModel?.userType} ID: ${authenticationState.userModel?.userId ?? 0000}",
               style: CustomTextStyles.descriptionTextStyles,
             ),
 
@@ -80,7 +85,7 @@ class UserProfile extends HookConsumerWidget {
                     isRequired: true,
                     controller: authenticationState.userNameController,
                     title: "Full Name",
-                    hintText: "Jhon Doe",
+                    hintText: "e.g,Jhon Doe",
                     validator: (value)=> FormValidation(
                         validationType: ValidationType.name,
                         formValue: value
@@ -93,7 +98,7 @@ class UserProfile extends HookConsumerWidget {
                     isRequired: true,
                     controller: authenticationState.emailController,
                     title: "Email",
-                    hintText: "demo@gmail.com",
+                    hintText: "e.g,demo@gmail.com",
                     validator: (value)=> FormValidation(
                         validationType: ValidationType.email,
                         formValue: value
@@ -103,9 +108,9 @@ class UserProfile extends HookConsumerWidget {
                   gap6,
 
                   PrimaryTextFormFields(
-                    controller: authenticationState.emailController,
+                    controller: authenticationState.phoneController,
                     title: "Phone Number",
-                    hintText: "demo@gmail.com",
+                    hintText: "e.g,0194583292",
                     validator: (value)=> FormValidation(
                         validationType: ValidationType.email,
                         formValue: value

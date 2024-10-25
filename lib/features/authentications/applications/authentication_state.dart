@@ -7,6 +7,7 @@ class AuthenticationState extends Equatable{
   final String? selectedUserType;
   final TextEditingController userNameController;
   final TextEditingController emailController;
+  final TextEditingController phoneController;
   final TextEditingController passwordController;
   final TextEditingController confirmPasswordController;
   final UserModel? userModel;
@@ -15,6 +16,7 @@ class AuthenticationState extends Equatable{
     required this.isLoading,
     required this.selectedUserType,
     required this.userNameController,
+    required this.phoneController,
     required this.emailController,
     required this.passwordController,
     required this.confirmPasswordController,
@@ -27,6 +29,7 @@ class AuthenticationState extends Equatable{
     isLoading,
     selectedUserType,
     userNameController,
+    phoneController,
     emailController,
     passwordController,
     confirmPasswordController,
@@ -39,6 +42,7 @@ class AuthenticationState extends Equatable{
       selectedUserType: null,
       userNameController: TextEditingController(),
       emailController: TextEditingController(),
+      phoneController: TextEditingController(),
       passwordController: TextEditingController(),
       confirmPasswordController: TextEditingController(),
       userModel: null
@@ -50,6 +54,7 @@ class AuthenticationState extends Equatable{
     String? selectedUserType,
     TextEditingController? userNameController,
     TextEditingController? emailController,
+    TextEditingController? phoneController,
     TextEditingController? passwordController,
     TextEditingController? confirmPasswordController,
     UserModel? userModel
@@ -57,6 +62,7 @@ class AuthenticationState extends Equatable{
     isLoading: isLoading ?? this.isLoading,
     selectedUserType: selectedUserType ?? this.selectedUserType,
     userNameController: userNameController ?? this.userNameController,
+    phoneController: phoneController ?? this.phoneController,
     emailController: emailController ?? this.emailController,
     passwordController: passwordController ?? this.passwordController,
     confirmPasswordController: confirmPasswordController ?? this.confirmPasswordController,

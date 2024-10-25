@@ -5,6 +5,7 @@ import 'package:feature_first/data/local_database/set_local_database.dart';
 import 'package:feature_first/data/model/user_model.dart';
 import 'package:feature_first/features/authentications/applications/authentication_state.dart';
 import 'package:feature_first/features/authentications/domain/authentication_domain.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class AuthenticationStateNotifier extends StateNotifier<AuthenticationState>{
@@ -34,8 +35,19 @@ class AuthenticationStateNotifier extends StateNotifier<AuthenticationState>{
             name: GetLocalDatabase().userName() ?? "",
             email: GetLocalDatabase().userEmail() ?? "",
             password: "123456"
-        )
+        ),
       )
+    );
+  }
+
+  void setUserProfileInfo(){
+    stateMaker(
+        state.copyWith(
+          userNameController: TextEditingController(text: state.userModel?.name),
+          emailController: TextEditingController(text: state.userModel?.email),
+          passwordController: TextEditingController(text: state.userModel?.password),
+          confirmPasswordController: TextEditingController(text: state.userModel?.password),
+        )
     );
   }
 
