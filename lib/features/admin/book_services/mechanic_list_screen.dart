@@ -1,5 +1,6 @@
 import 'package:feature_first/common/widgets/buttons/widget_bounce.dart';
 import 'package:feature_first/common/widgets/components/item_view/mechanic_item_view.dart';
+import 'package:feature_first/common/widgets/empty_widget.dart';
 import 'package:feature_first/core/dependency_injection/dependency_injection.dart';
 import 'package:feature_first/features/admin/book_services/book_service_screen.dart';
 import 'package:feature_first/utils/utils.dart';
@@ -40,23 +41,32 @@ class MechanicListScreen extends HookConsumerWidget {
             Expanded(
                 child: Skeletonizer(
                   enabled: adminState.isLoading,
-                  child: ListView.builder(
-                      itemCount: adminState.mechanicList?.length,
-                      itemBuilder: (context,index){
-                        return WidgetBounce(
-                            onPressed: ()=> Navigator.push(context,
-                                CupertinoPageRoute(builder: (context)=> BookServiceScreen(
+                  child: Visibility(
+                    visible: (adminState.mechanicList?.length ?? 0) > 0 && adminState.isLoading == false,
+                    replacement: const EmptyWidget(
+                        message: "Didn't create account anyone mechanic."
+                    ),
+                    child: ListView.builder(
+                        itemCount: adminState.mechanicList?.length,
+                        itemBuilder: (context,index){
+                          return WidgetBounce(
+                              onPressed: ()=> Navigator.push(context,
+                                  CupertinoPageRoute(builder: (context)=> BookServiceScreen(
+                                    mechanicId: adminState.mechanicList?[index]?.userId ?? 0000,
+                                    mechanicName: adminState.mechanicList?[index]?.name ?? "Not Given",
+                                    mechanicEmail: adminState.mechanicList?[index]?.email ?? "Not Given",
+                                    mechanicImage: adminState.mechanicList?[index]?.profileImage,
+                                    mechanicPhone: adminState.mechanicList?[index]?.phone,
+                                  ))),
+                              child: MechanicItemView(
+                                  mechanicImage: adminState.mechanicList?[index]?.profileImage ?? ImageConstants.mehanicImage,
                                   mechanicId: adminState.mechanicList?[index]?.userId ?? 0000,
-                                  mechanicName: adminState.mechanicList?[index]?.name ?? "Not Given",
-                                  mechanicEmail: adminState.mechanicList?[index]?.email ?? "Not Given",
-                                ))),
-                            child: MechanicItemView(
-                                mechanicId: adminState.mechanicList?[index]?.userId ?? 0000,
-                                mechanicName: adminState.mechanicList?[index]?.name ?? "",
-                                email: adminState.mechanicList?[index]?.email ?? "",
-                            )
-                        );
-                      }
+                                  mechanicName: adminState.mechanicList?[index]?.name ?? "",
+                                  email: adminState.mechanicList?[index]?.email ?? "",
+                              )
+                          );
+                        }
+                    ),
                   ),
                 )
             )
