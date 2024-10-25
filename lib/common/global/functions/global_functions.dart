@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'dart:math';
+import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:feature_first/utils/styles/color_palates.dart';
@@ -45,6 +46,18 @@ class GlobalFunctions {
     );
   }
 
+
+  static void showSuccessToast(String message) {
+    Fluttertoast.showToast(
+        msg: message,
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.green,
+        textColor: ColorPalates.defaultWhite,
+        fontSize: 10.sp
+    );
+  }
 
 
 }

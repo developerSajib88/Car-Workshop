@@ -33,12 +33,12 @@ class UserProfile extends HookConsumerWidget {
           await authenticationCtrl.profilePictureUpload(imageFile: pickImage.value!).then((value)async{
             await authenticationCtrl.profileInfoUpdate(
                 profileImageUrl: value ?? authenticationState.userModel?.profileImage ?? ImageConstants.mehanicImage
-            );
+            ).whenComplete(()=> GlobalFunctions.showSuccessToast("Updated"));
           });
         }else{
           await authenticationCtrl.profileInfoUpdate(
               profileImageUrl: authenticationState.userModel?.profileImage ?? ImageConstants.mehanicImage
-          );
+          ).whenComplete(()=>  GlobalFunctions.showSuccessToast("Updated"));
         }
       }
     }

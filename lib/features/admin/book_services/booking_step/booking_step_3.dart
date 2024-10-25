@@ -1,3 +1,4 @@
+import 'package:feature_first/common/global/functions/global_functions.dart';
 import 'package:feature_first/common/global/validation/forms_validation.dart';
 import 'package:feature_first/common/widgets/buttons/widget_bounce.dart';
 import 'package:feature_first/common/widgets/text_form_fields/primary_text_form_fields.dart';
@@ -93,6 +94,7 @@ class BookingStep3 extends HookConsumerWidget {
                 ).then((value){
                   if(value ?? false){
                     Navigator.pushReplacement(context, CupertinoPageRoute(builder: (context)=> const DashboardScreen()));
+                    GlobalFunctions.showSuccessToast("Booking Create Success");
                   }
                 });
               }

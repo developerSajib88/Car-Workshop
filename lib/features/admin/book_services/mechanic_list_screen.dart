@@ -39,13 +39,13 @@ class MechanicListScreen extends HookConsumerWidget {
           children: [
 
             Expanded(
-                child: Skeletonizer(
-                  enabled: adminState.isLoading,
-                  child: Visibility(
-                    visible: (adminState.mechanicList?.length ?? 0) > 0 && adminState.isLoading == false,
-                    replacement: const EmptyWidget(
-                        message: "Didn't create account anyone mechanic."
-                    ),
+                child: Visibility(
+                  visible: (adminState.mechanicList?.length ?? 0) > 0 && adminState.isLoading == false,
+                  replacement: const EmptyWidget(
+                      message: "Didn't create account anyone mechanic."
+                  ),
+                  child: Skeletonizer(
+                    enabled: adminState.isLoading,
                     child: ListView.builder(
                         itemCount: adminState.mechanicList?.length,
                         itemBuilder: (context,index){

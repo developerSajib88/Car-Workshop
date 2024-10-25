@@ -20,13 +20,13 @@ class MechanicJobList extends HookConsumerWidget {
     return SizedBox(
       width: 1.sw,
       height: 1.sh,
-      child: Skeletonizer(
-        enabled: mechanicState.isLoading,
-        child: Visibility(
-          visible: (mechanicState.mechanicBookingJobList?.length ?? 0) > 0 && mechanicState.isLoading == false,
-          replacement: const EmptyWidget(
-              message: "Don't have here to your any assign booking services."
-          ),
+      child: Visibility(
+        visible: (mechanicState.mechanicBookingJobList?.length ?? 0) > 0 && mechanicState.isLoading == false,
+        replacement: const EmptyWidget(
+            message: "Don't have here to your any assign booking services."
+        ),
+        child: Skeletonizer(
+          enabled: mechanicState.isLoading == false,
           child: ListView.builder(
               itemCount: mechanicState.mechanicBookingJobList?.length,
               itemBuilder: (context,index){

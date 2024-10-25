@@ -27,13 +27,13 @@ class AdminBookingList extends HookConsumerWidget {
     return SizedBox(
       width: 1.sw,
       height: 1.sh,
-      child: Skeletonizer(
-        enabled: adminState.isLoading,
-        child: Visibility(
-          visible: (adminState.adminBookingList?.length ?? 0) > 0 && adminState.isLoading == false,
-          replacement: const EmptyWidget(
-            message: "You don't have any booking service. Please! Book a new Service.",
-          ),
+      child: Visibility(
+        visible: (adminState.adminBookingList?.length ?? 0) > 0 && adminState.isLoading == false,
+        replacement: const EmptyWidget(
+          message: "You don't have any booking service. Please! Book a new Service.",
+        ),
+        child: Skeletonizer(
+          enabled: adminState.isLoading,
           child: ListView.builder(
               itemCount: adminState.adminBookingList?.length,
               itemBuilder: (context,index){
