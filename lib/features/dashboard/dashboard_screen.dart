@@ -2,6 +2,7 @@ import 'package:feature_first/common/widgets/app_bars/dashboard_appbar.dart';
 import 'package:feature_first/core/dependency_injection/dependency_injection.dart';
 import 'package:feature_first/features/admin/admin_booking_list.dart';
 import 'package:feature_first/features/admin/book_services/mechanic_list_screen.dart';
+import 'package:feature_first/features/authentications/presentation/user_profile.dart/user_profile.dart';
 import 'package:feature_first/features/mechanic/mechanic_job_list.dart';
 import 'package:feature_first/utils/constants/ui_constants.dart';
 import 'package:feature_first/utils/styles/color_palates.dart';
@@ -26,25 +27,31 @@ class DashboardScreen extends HookConsumerWidget {
       selectedIndex.value = index;
     }
 
+    final List<Widget> navigationScreen = [
+      Visibility(
+        visible: authenticationState.userModel?.userType == "Admin",
+        replacement: const MechanicJobList(),
+        child: const AdminBookingList(),
+      ),
+      const UserProfile()
+    ];
+
     useEffect((){
       Future.microtask(()=> authenticationCtrl.setUserData());
       return null;
     },[]);
 
     return Scaffold(
-      appBar: const DashboardAppBar(),
+      appBar: selectedIndex.value == 0 ?const DashboardAppBar() : null,
       body: SafeArea(
         child: Container(
           width: 1.sw,
           height: 1.sh,
           padding: padding6,
-          child: Visibility(
-            visible: authenticationState.userModel?.userType == "Admin",
-            replacement: const MechanicJobList(),
-            child: const AdminBookingList(),
-          ),
+          child: navigationScreen[selectedIndex.value],
         ),
       ),
+
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
         backgroundColor: ColorPalates.primaryColor,
