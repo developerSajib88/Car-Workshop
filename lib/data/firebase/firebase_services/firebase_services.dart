@@ -148,12 +148,12 @@ class FirebaseServices {
     required Map<String, dynamic> updatedData
   }) async {
     try {
-      QuerySnapshot querySnapshot = await collections.where("user_Id", isEqualTo: userId).get();
+      QuerySnapshot querySnapshot = await collections.where("user_id", isEqualTo: userId).get();
 
       if (querySnapshot.docs.isNotEmpty) {
         DocumentSnapshot userDoc = querySnapshot.docs.first;
         await collections.doc(userDoc.id).update(updatedData);
-        CustomLog.errorPrint("User data updated successfully.");
+        CustomLog.customPrinterGreen("User data updated successfully.");
 
         DocumentSnapshot updatedDoc = await collections.doc(userDoc.id).get();
         UserModel userModel = UserModel.fromJson(updatedDoc.data() as Map<String, dynamic>);
