@@ -101,6 +101,8 @@ class AdminStateNotifier extends StateNotifier<AdminState>{
   Future<bool?> createBookingService({
     required int adminId,
     required int mechanicId,
+    required String? mechanicImage,
+    required String? mechanicPhone,
     required String mechanicName,
     required String mechanicEmail
   })async{
@@ -109,6 +111,8 @@ class AdminStateNotifier extends StateNotifier<AdminState>{
       "booking_id" : GlobalFunctions.generateRandomUserId(),
       "admin_id" : adminId,
       "mechanic_id" : mechanicId,
+      "profile" : mechanicImage,
+      "mechanic_phone" : mechanicPhone,
       "mechanic_name" : mechanicName,
       "mechanic_email" : mechanicEmail,
       "booking_title" : state.titleController.text,
