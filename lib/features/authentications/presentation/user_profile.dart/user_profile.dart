@@ -27,6 +27,22 @@ class UserProfile extends HookConsumerWidget {
     final authenticationState = ref.watch(authenticationProvider);
     final authenticationCtrl = ref.read(authenticationProvider.notifier);
 
+    Future<void> updateUserProfile()async{
+      if(formKey.currentState!.validate()){
+        if(pickImage.value != null){
+          await authenticationCtrl.profilePictureUpload(imageFile: pickImage.value!).then((value)async{
+            await authenticationCtrl.profileInfoUpdate(
+                profileImageUrl: value ?? authenticationState.userModel?.profileImage ?? ImageConstants.mehanicImage
+            );
+          });
+        }else{
+          await authenticationCtrl.profileInfoUpdate(
+              profileImageUrl: authenticationState.userModel?.profileImage ?? ImageConstants.mehanicImage
+          );
+        }
+      }
+    }
+
     useEffect((){
       Future.microtask(()=> authenticationCtrl.setUserProfileInfo());
       return null;
@@ -50,8 +66,8 @@ class UserProfile extends HookConsumerWidget {
                   child: CircleAvatar(
                       radius: 30.r,
                       backgroundImage: pickImage.value != null ? FileImage(pickImage.value!) :
-                      const NetworkImage(
-                        "https://img.freepik.com/free-photo/smiling-auto-mechanic-with-wrench-standing-hands-folded-white-background_662251-2939.jpg",
+                      NetworkImage(
+                        authenticationState.userModel?.profileImage ?? "",
                       )
                   ),
                 ),
@@ -76,7 +92,7 @@ class UserProfile extends HookConsumerWidget {
             gap8,
 
             Text(
-              "Sajib Hasan",
+              authenticationState.userModel?.name ?? "Not Given",
               style: CustomTextStyles.primaryTextStylesBold,
             ),
 
@@ -124,10 +140,10 @@ class UserProfile extends HookConsumerWidget {
                     controller: authenticationState.phoneController,
                     title: "Phone Number",
                     hintText: "e.g,0194583292",
-                    validator: (value)=> FormValidation(
-                        validationType: ValidationType.email,
-                        formValue: value
-                    ).validate(),
+                    // validator: (value)=> FormValidation(
+                    //     validationType: ValidationType.email,
+                    //     formValue: value
+                    // ).validate(),
                   ),
 
 
@@ -172,14 +188,7 @@ class UserProfile extends HookConsumerWidget {
                   PrimaryButton(
                       title: "Update",
                       isLoading: authenticationState.isLoading,
-                      onPressed: ()async{
-                        if(formKey.currentState!.validate() && pickImage.value != null){
-
-                          authenticationCtrl.createUserAccount().then((value){
-                            //if(value) Navigator.pushReplacement(context,CupertinoPageRoute(builder: (context)=> const DashboardScreen()));
-                          });
-                        }
-                      }
+                      onPressed: ()=> updateUserProfile()
                   ),
 
                   gap24,
