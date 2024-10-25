@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:feature_first/common/global/functions/global_functions.dart';
 import 'package:feature_first/data/firebase/firebase_collections/firebase_collections.dart';
 import 'package:feature_first/data/local_database/get_local_database.dart';
@@ -39,6 +41,26 @@ class AuthenticationStateNotifier extends StateNotifier<AuthenticationState>{
       )
     );
   }
+
+
+  Future<String?> profilePictureUpload({required File imageFile})async{
+    return await authenticationDom.profilePictureUpload(imageFile: imageFile);
+  }
+
+  Future<void> profileInfoUpdate({required String profileImageUrl})async{
+    stateMaker(state.copyWith(isLoading: true));
+    Map<String,dynamic> body = {
+      "profile" : profileImageUrl,
+      "user_id" : state.userModel?.userId,
+      "user_type" : state.userModel?.userType ?? "Admin",
+      "name": state.userNameController.text,
+      "email": state.emailController.text,
+      "phone": state.phoneController.text,
+      "password" : state.passwordController.text
+    };
+    stateMaker(state.copyWith(isLoading: false));
+  }
+
 
   void setUserProfileInfo(){
     stateMaker(
