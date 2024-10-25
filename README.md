@@ -174,8 +174,3 @@ If you encounter any problems, try these troubleshooting steps:
 
 Following these steps should get you fully set up and running with the Car Workshop project.
 
-
-
-Here’s a markdown section describing each package and its purpose within your project:
-
-
