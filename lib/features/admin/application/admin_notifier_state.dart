@@ -33,6 +33,16 @@ class AdminStateNotifier extends StateNotifier<AdminState>{
       initialDate: DateTime.now(),
       firstDate: DateTime(2000),
       lastDate: DateTime(2100),
+      builder: (BuildContext context, Widget? child) {
+        return Theme(
+          data: ThemeData.light().copyWith(
+            colorScheme: ColorScheme.light(
+              primary: ColorPalates.primaryColor,
+            ),
+          ),
+          child: child!,
+        );
+      },
     );
     if (pickedDate != null) {
       String formatDate = GlobalFunctions.formatDate(pickedDate);
