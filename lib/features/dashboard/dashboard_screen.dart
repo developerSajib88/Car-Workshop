@@ -53,7 +53,8 @@ class DashboardScreen extends HookConsumerWidget {
       ),
 
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: authenticationState.userModel?.userType == "Admin" ?
+      FloatingActionButton(
         backgroundColor: ColorPalates.primaryColor,
         shape: RoundedRectangleBorder(borderRadius: radiusCircle),
         onPressed: (){
@@ -82,7 +83,7 @@ class DashboardScreen extends HookConsumerWidget {
           Icons.add,
           color: ColorPalates.defaultWhite,
         ),
-      ),
+      ):null,
 
       bottomNavigationBar: BottomAppBar(
         height: 40.h,
