@@ -1,5 +1,10 @@
+import 'dart:io';
+import 'dart:math';
+
+import 'package:feature_first/common/global/functions/global_functions.dart';
 import 'package:feature_first/common/global/validation/forms_validation.dart';
 import 'package:feature_first/common/widgets/buttons/primary_buttons.dart';
+import 'package:feature_first/common/widgets/buttons/widget_bounce.dart';
 import 'package:feature_first/common/widgets/text_form_fields/primary_text_form_fields.dart';
 import 'package:feature_first/core/dependency_injection/dependency_injection.dart';
 import 'package:feature_first/utils/utils.dart';
@@ -14,8 +19,10 @@ class UserProfile extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
 
     final formKey = useMemoized(()=> GlobalKey<FormState>());
-    final obsecurePassword = useState<bool>(false);
-    final obsecureConfirmPassword = useState<bool>(false);
+    final obSecurePassword = useState<bool>(false);
+    final obSecureConfirmPassword = useState<bool>(false);
+
+    final pickImage = useState<File?>(null);
 
     final authenticationState = ref.watch(authenticationProvider);
     final authenticationCtrl = ref.read(authenticationProvider.notifier);
@@ -42,18 +49,24 @@ class UserProfile extends HookConsumerWidget {
                   backgroundColor: ColorPalates.primaryColor,
                   child: CircleAvatar(
                       radius: 30.r,
-                      backgroundImage: const NetworkImage(
+                      backgroundImage: pickImage.value != null ? FileImage(pickImage.value!) :
+                      const NetworkImage(
                         "https://img.freepik.com/free-photo/smiling-auto-mechanic-with-wrench-standing-hands-folded-white-background_662251-2939.jpg",
                       )
                   ),
                 ),
 
-                CircleAvatar(
-                  radius: 8.r,
-                  backgroundColor: ColorPalates.defaultWhite,
-                  child: Icon(
-                      Icons.camera_enhance_rounded,
-                      size: 9.sp,
+                WidgetBounce(
+                  onPressed: ()async{
+                     pickImage.value = await GlobalFunctions.pickImage();
+                  },
+                  child: CircleAvatar(
+                    radius: 8.r,
+                    backgroundColor: ColorPalates.defaultWhite,
+                    child: Icon(
+                        Icons.camera_enhance_rounded,
+                        size: 9.sp,
+                    ),
                   ),
                 )
 
@@ -125,8 +138,8 @@ class UserProfile extends HookConsumerWidget {
                     controller: authenticationState.passwordController,
                     title: "Password",
                     hintText: "*******",
-                    passwordVisibility: obsecurePassword.value,
-                    suffixIconPressed: ()=> obsecurePassword.value = !obsecurePassword.value,
+                    passwordVisibility: obSecurePassword.value,
+                    suffixIconPressed: ()=> obSecurePassword.value = !obSecurePassword.value,
                     showSuffixIcon: true,
                     validator: (value)=> FormValidation(
                         validationType: ValidationType.password,
@@ -141,9 +154,9 @@ class UserProfile extends HookConsumerWidget {
                     controller: authenticationState.confirmPasswordController,
                     title: "Confirm Password",
                     hintText: "*******",
-                    passwordVisibility: obsecureConfirmPassword.value,
+                    passwordVisibility: obSecureConfirmPassword.value,
                     showSuffixIcon: true,
-                    suffixIconPressed: ()=> obsecureConfirmPassword.value = !obsecureConfirmPassword.value,
+                    suffixIconPressed: ()=> obSecureConfirmPassword.value = !obSecureConfirmPassword.value,
                     validator: (value){
                       if(authenticationState.passwordController.text != value!){
                         return "Don't match your confirm password.";
@@ -160,7 +173,8 @@ class UserProfile extends HookConsumerWidget {
                       title: "Update",
                       isLoading: authenticationState.isLoading,
                       onPressed: ()async{
-                        if(formKey.currentState!.validate() && authenticationState.selectedUserType != null){
+                        if(formKey.currentState!.validate() && pickImage.value != null){
+
                           authenticationCtrl.createUserAccount().then((value){
                             //if(value) Navigator.pushReplacement(context,CupertinoPageRoute(builder: (context)=> const DashboardScreen()));
                           });
