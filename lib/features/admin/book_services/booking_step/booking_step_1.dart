@@ -1,4 +1,3 @@
-import 'package:feature_first/app/app.dart';
 import 'package:feature_first/common/global/validation/forms_validation.dart';
 import 'package:feature_first/common/widgets/buttons/widget_bounce.dart';
 import 'package:feature_first/common/widgets/text_form_fields/primary_text_form_fields.dart';
@@ -42,7 +41,9 @@ class BookingStep1 extends HookConsumerWidget {
 
           PrimaryTextFormFields(
               controller: adminState.startDateTimeController,
+              readOnly: true,
               isRequired: true,
+              onTap: ()=> adminCtrl.selectedStartDate(context: context),
               title: "Start Date & Time",
               hintText: "e.g.2024-10-20 09:00 AM",
               validator: (value)=> FormValidation(
@@ -56,6 +57,8 @@ class BookingStep1 extends HookConsumerWidget {
           PrimaryTextFormFields(
               controller: adminState.endDateTimeController,
               isRequired: true,
+              readOnly: true,
+              onTap: ()=> adminCtrl.selectedEndDate(context: context),
               title: "End Date & Time",
               hintText: "e.g., 2024-10-20 11:00 AM",
               validator: (value)=> FormValidation(
