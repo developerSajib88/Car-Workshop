@@ -1,9 +1,7 @@
 
-import 'package:feature_first/common/widgets/buttons/primary_buttons.dart';
 import 'package:feature_first/core/dependency_injection/dependency_injection.dart';
 import 'package:feature_first/data/local_database/set_local_database.dart';
 import 'package:feature_first/features/authentications/presentation/log_in/log_in_screen.dart';
-import 'package:feature_first/features/mechanic/mechanic_list_screen.dart';
 import 'package:feature_first/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -52,6 +50,7 @@ class DashboardAppBar extends HookConsumerWidget implements PreferredSizeWidget 
               crossAxisAlignment: crossStart,
               mainAxisAlignment: mainCenter,
               children: [
+
                 Text(
                   authenticationState.userModel?.name ?? "Sajib Hasan",
                   style: CustomTextStyles.primaryTextStylesBold.copyWith(

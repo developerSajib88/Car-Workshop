@@ -3,6 +3,9 @@ import 'package:feature_first/data/custom_log.dart';
 
 class FirebaseMethods{
 
+
+
+
   Future<Map<String, dynamic>?> add({
     required CollectionReference collection,
     required Map<String, dynamic> body,
@@ -23,7 +26,5 @@ class FirebaseMethods{
 
     return null;
   }
-
-
 
 }

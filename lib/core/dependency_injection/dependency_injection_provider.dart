@@ -4,3 +4,11 @@ part of 'dependency_injection.dart';
 final authenticationProvider =
   StateNotifierProvider<AuthenticationStateNotifier,AuthenticationState>(
         (ref) => AuthenticationStateNotifier(authenticationDom: getIt())..init());
+
+final adminProvider =
+  StateNotifierProvider<AdminStateNotifier,AdminState>(
+          (ref) => AdminStateNotifier(adminDomain: getIt())..init());
+
+final mechanicProvider =
+  StateNotifierProvider<MechanicStateNotifier,MechanicState>(
+          (ref) => MechanicStateNotifier(mechanicDomain: getIt())..init());

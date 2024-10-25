@@ -20,6 +20,10 @@ class GetLocalDatabase {
 
   String? userPhone() => database.get(KeyLocalDatabase.userPhone);
 
+  String? userPass() => database.get(KeyLocalDatabase.userPassword);
+
+  String? userProfileImage() => database.get(KeyLocalDatabase.userProfilePicture);
+
   String? userAccessToken() => database.get(KeyLocalDatabase.userAccessToken);
 
   String? userRefreshToken() => database.get(KeyLocalDatabase.userRefreshToken);
