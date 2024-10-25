@@ -11,11 +11,15 @@ class BookServiceScreen extends HookConsumerWidget {
   final int mechanicId;
   final String mechanicName;
   final String mechanicEmail;
+  final String? mechanicImage;
+  final String? mechanicPhone;
   const BookServiceScreen({
     super.key,
     required this.mechanicId,
     required this.mechanicName,
-    required this.mechanicEmail
+    required this.mechanicEmail,
+    required this.mechanicImage,
+    required this.mechanicPhone
   });
 
   @override
@@ -70,6 +74,8 @@ class BookServiceScreen extends HookConsumerWidget {
                     mechanicId: mechanicId,
                     mechanicName: mechanicName,
                     mechanicEmail: mechanicEmail,
+                    mechanicImage: mechanicImage,
+                    mechanicPhone: mechanicPhone,
                   )
               ),
 

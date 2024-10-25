@@ -12,11 +12,16 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 
 class BookingStep3 extends HookConsumerWidget {
   final int mechanicId;
+  final String? mechanicImage;
+  final String? mechanicPhone;
   final String mechanicName;
   final String mechanicEmail;
   const BookingStep3({
     super.key,
     required this.mechanicId,
+    required this.mechanicImage,
+    required this.mechanicPhone,
+
     required this.mechanicName,
     required this.mechanicEmail
   });
@@ -81,7 +86,9 @@ class BookingStep3 extends HookConsumerWidget {
                 adminCtrl.createBookingService(
                     adminId: authenticationState.userModel?.userId ?? 00000,
                     mechanicId: mechanicId,
+                    mechanicImage: mechanicImage,
                     mechanicName: mechanicName,
+                    mechanicPhone: mechanicPhone,
                     mechanicEmail: mechanicEmail
                 ).then((value){
                   if(value ?? false){
