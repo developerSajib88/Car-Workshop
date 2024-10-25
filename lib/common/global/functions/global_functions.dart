@@ -1,4 +1,6 @@
+import 'dart:io';
 import 'dart:math';
+import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:feature_first/utils/styles/color_palates.dart';
 import 'package:feature_first/utils/utils.dart';
@@ -15,6 +17,21 @@ class GlobalFunctions {
     final DateFormat formatter = DateFormat('d MMMM yyyy');
     return formatter.format(date);
   }
+
+  static Future<File?> pickImage() async {
+
+    final ImagePicker picker = ImagePicker();
+    final XFile? pickedFile = await picker.pickImage(source: ImageSource.gallery);
+
+    if (pickedFile != null) {
+      return File(pickedFile.path);
+    } else {
+      print('No image selected.');
+      return null;
+    }
+
+  }
+
 
   static void showWarningToast(String message) {
     Fluttertoast.showToast(
