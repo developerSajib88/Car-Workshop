@@ -58,6 +58,16 @@ class AuthenticationStateNotifier extends StateNotifier<AuthenticationState>{
       "phone": state.phoneController.text,
       "password" : state.passwordController.text
     };
+    await authenticationDom.updateUserProfileInfo(
+        userId: state.userModel?.userId ?? 0000,
+        collections: state.userModel?.userType == "Admin" ?
+        FirebaseCollections.admin : FirebaseCollections.mechanic,
+        updatedData: body
+    ).then((value){
+      stateMaker(state.copyWith(
+        userModel: value
+      ));
+    });
     stateMaker(state.copyWith(isLoading: false));
   }
 
@@ -83,10 +93,10 @@ class AuthenticationStateNotifier extends StateNotifier<AuthenticationState>{
     ).then((value){
       if(value != null){
         SetLocalDatabase().userIsLogin(true);
-        SetLocalDatabase().userId(value.userId);
-        SetLocalDatabase().userName(value.name);
-        SetLocalDatabase().userEmail(value.email);
-        SetLocalDatabase().userType(value.userType);
+        SetLocalDatabase().userId(value.userId ?? 0000);
+        SetLocalDatabase().userName(value.name ?? "Not Given");
+        SetLocalDatabase().userEmail(value.email ?? "Not Given");
+        SetLocalDatabase().userType(value.userType ?? "Admin");
         authSuccess = true;
       }
     });
@@ -113,10 +123,10 @@ class AuthenticationStateNotifier extends StateNotifier<AuthenticationState>{
     ).then((value){
       if(value != null){
         SetLocalDatabase().userIsLogin(true);
-        SetLocalDatabase().userId(value.userId);
-        SetLocalDatabase().userName(value.name);
-        SetLocalDatabase().userEmail(value.email);
-        SetLocalDatabase().userType(value.userType);
+        SetLocalDatabase().userId(value.userId ?? 0000);
+        SetLocalDatabase().userName(value.name ?? "Not Given");
+        SetLocalDatabase().userEmail(value.email ?? "Not Given");
+        SetLocalDatabase().userType(value.userType ?? "Admin");
         authSuccess = true;
       }
     });

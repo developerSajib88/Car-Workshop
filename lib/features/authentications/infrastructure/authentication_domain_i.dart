@@ -21,4 +21,14 @@ class AuthenticationDomI extends AuthenticationDom{
   Future<String?> profilePictureUpload({required File imageFile}) async =>
       await FirebaseServices.uploadImageToFirebase(imageFile);
 
+  @override
+  Future<UserModel?> updateUserProfileInfo({
+    required int userId,
+    required CollectionReference<Object?> collections,
+    required Map<String, dynamic> updatedData
+  }) async => await FirebaseServices.updateUserInfo(
+      userId: userId,
+      collections: collections,
+      updatedData: updatedData
+  );
 }

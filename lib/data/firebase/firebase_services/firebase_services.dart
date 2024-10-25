@@ -142,7 +142,31 @@ class FirebaseServices {
   }
 
 
+  static Future<UserModel?> updateUserInfo({
+    required int userId,
+    required CollectionReference collections,
+    required Map<String, dynamic> updatedData
+  }) async {
+    try {
+      QuerySnapshot querySnapshot = await collections.where("user_Id", isEqualTo: userId).get();
 
+      if (querySnapshot.docs.isNotEmpty) {
+        DocumentSnapshot userDoc = querySnapshot.docs.first;
+        await collections.doc(userDoc.id).update(updatedData);
+        CustomLog.errorPrint("User data updated successfully.");
+
+        DocumentSnapshot updatedDoc = await collections.doc(userDoc.id).get();
+        UserModel userModel = UserModel.fromJson(updatedDoc.data() as Map<String, dynamic>);
+        return userModel;
+      } else {
+        CustomLog.errorPrint("No user found with this userId.");
+        return null;
+      }
+    } catch (e) {
+      CustomLog.errorPrint(e);
+      return null;
+    }
+  }
 
 
 

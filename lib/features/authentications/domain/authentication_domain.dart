@@ -18,5 +18,11 @@ abstract class AuthenticationDom{
 
   Future<String?> profilePictureUpload({required File imageFile});
 
+  Future<UserModel?> updateUserProfileInfo({
+    required int userId,
+    required CollectionReference collections,
+    required Map<String, dynamic> updatedData
+  });
+
 
 }
