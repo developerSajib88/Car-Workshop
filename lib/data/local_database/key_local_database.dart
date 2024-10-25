@@ -16,6 +16,10 @@ class KeyLocalDatabase {
 
   static String get userPhone => "userPhone";
 
+  static String get userPassword => "userPassword";
+
+  static String get userProfilePicture => "userProfileImage";
+
   static String get userAccessToken => "userAccessToken";
 
   static String get userRefreshToken => "userRefreshToken";

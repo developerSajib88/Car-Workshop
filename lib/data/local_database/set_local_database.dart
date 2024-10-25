@@ -33,6 +33,12 @@ class SetLocalDatabase{
   void userPhone(String value) =>
       storingData(KeyLocalDatabase.userPhone, value);
 
+  void userPassword(String value) =>
+      storingData(KeyLocalDatabase.userPassword, value);
+
+  void userProfilePicture(String value) =>
+      storingData(KeyLocalDatabase.userProfilePicture, value);
+
   void userAccessToken(String value) =>
       storingData(KeyLocalDatabase.userAccessToken, value);
 
