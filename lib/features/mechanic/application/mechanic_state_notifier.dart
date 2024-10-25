@@ -7,7 +7,7 @@ class MechanicStateNotifier extends StateNotifier<MechanicState>{
   final MechanicDomain mechanicDomain;
   MechanicStateNotifier({required this.mechanicDomain}):super(MechanicState.inti());
 
-  stateMaker(MechanicState newState)=> newState = state;
+  stateMaker(MechanicState newState)=> state = newState;
 
   void init(){
     getMechanicBookingJobList();
@@ -15,7 +15,7 @@ class MechanicStateNotifier extends StateNotifier<MechanicState>{
 
   Future<void> getMechanicBookingJobList()async{
     stateMaker(state.copyWith(isLoading: true));
-    mechanicDomain.getMechanicBookingJobList(
+    await mechanicDomain.getMechanicBookingJobList(
         mechanicId: GetLocalDatabase().userId() ?? 0000
     ).then((value){
       if(value != null){

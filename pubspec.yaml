@@ -41,6 +41,7 @@ dependencies:
   firebase_core: ^3.1.1
   firebase_messaging: ^15.0.2
   cloud_firestore: ^5.4.4
+  firebase_storage: ^12.3.4
 
   # Push Notification
   awesome_notifications: any
@@ -65,6 +66,9 @@ dependencies:
 
   # Toast Message
   fluttertoast: ^8.0.9
+
+  # Pick Image Gallery/Camera
+  image_picker: ^1.1.2
 
 
 

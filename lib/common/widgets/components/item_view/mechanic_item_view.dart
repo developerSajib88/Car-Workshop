@@ -1,4 +1,5 @@
 import 'package:feature_first/common/widgets/components/background_container.dart';
+import 'package:feature_first/utils/constants/image_constants.dart';
 import 'package:feature_first/utils/constants/ui_constants.dart';
 import 'package:feature_first/utils/styles/color_palates.dart';
 import 'package:feature_first/utils/styles/custom_text_styles.dart';
@@ -9,11 +10,13 @@ class MechanicItemView extends StatelessWidget {
   final int mechanicId;
   final String mechanicName;
   final String email;
+  final String mechanicImage;
   const MechanicItemView({
     super.key,
     required this.mechanicId,
     required this.mechanicName,
-    required this.email
+    required this.email,
+    required this.mechanicImage
   });
 
   @override
@@ -29,8 +32,8 @@ class MechanicItemView extends StatelessWidget {
             backgroundColor: ColorPalates.primaryColor,
             child: CircleAvatar(
                 radius: 15.r,
-                backgroundImage: const NetworkImage(
-                  "https://img.freepik.com/free-photo/smiling-auto-mechanic-with-wrench-standing-hands-folded-white-background_662251-2939.jpg",
+                backgroundImage: NetworkImage(
+                  mechanicImage
                 )
             ),
           ),

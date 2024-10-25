@@ -1,5 +1,6 @@
 import 'package:feature_first/common/widgets/components/background_container.dart';
 import 'package:feature_first/common/widgets/data_view_widget.dart';
+import 'package:feature_first/utils/constants/image_constants.dart';
 import 'package:feature_first/utils/constants/ui_constants.dart';
 import 'package:feature_first/utils/styles/color_palates.dart';
 import 'package:feature_first/utils/styles/custom_text_styles.dart';
@@ -14,6 +15,7 @@ class BookingItemView extends StatelessWidget {
   final String customerNumber;
   final String startDate;
   final String endDate;
+  final String mechanicImage;
   const BookingItemView({
     super.key,
     required this.mechanicId,
@@ -23,6 +25,7 @@ class BookingItemView extends StatelessWidget {
     required this.customerNumber,
     required this.startDate,
     required this.endDate,
+    required this.mechanicImage
   });
 
   @override
@@ -43,8 +46,8 @@ class BookingItemView extends StatelessWidget {
                 backgroundColor: ColorPalates.primaryColor,
                 child: CircleAvatar(
                     radius: 15.r,
-                    backgroundImage: const NetworkImage(
-                      "https://img.freepik.com/free-photo/smiling-auto-mechanic-with-wrench-standing-hands-folded-white-background_662251-2939.jpg",
+                    backgroundImage: NetworkImage(
+                      mechanicImage,
                     )
                 ),
               ),

@@ -1,3 +1,4 @@
+import 'package:feature_first/common/global/functions/global_functions.dart';
 import 'package:feature_first/common/global/validation/forms_validation.dart';
 import 'package:feature_first/common/widgets/buttons/widget_bounce.dart';
 import 'package:feature_first/common/widgets/text_form_fields/primary_text_form_fields.dart';
@@ -12,11 +13,16 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 
 class BookingStep3 extends HookConsumerWidget {
   final int mechanicId;
+  final String? mechanicImage;
+  final String? mechanicPhone;
   final String mechanicName;
   final String mechanicEmail;
   const BookingStep3({
     super.key,
     required this.mechanicId,
+    required this.mechanicImage,
+    required this.mechanicPhone,
+
     required this.mechanicName,
     required this.mechanicEmail
   });
@@ -41,7 +47,6 @@ class BookingStep3 extends HookConsumerWidget {
             isRequired: true,
             title: "Name",
             hintText: "e.g,John Doe",
-            minLines: 4,
             validator: (value)=> FormValidation(
                 validationType: ValidationType.name,
                 formValue: value
@@ -82,11 +87,14 @@ class BookingStep3 extends HookConsumerWidget {
                 adminCtrl.createBookingService(
                     adminId: authenticationState.userModel?.userId ?? 00000,
                     mechanicId: mechanicId,
+                    mechanicImage: mechanicImage,
                     mechanicName: mechanicName,
+                    mechanicPhone: mechanicPhone,
                     mechanicEmail: mechanicEmail
                 ).then((value){
                   if(value ?? false){
                     Navigator.pushReplacement(context, CupertinoPageRoute(builder: (context)=> const DashboardScreen()));
+                    GlobalFunctions.showSuccessToast("Booking Create Success");
                   }
                 });
               }

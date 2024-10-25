@@ -2,6 +2,8 @@ class BookingModel {
   int? bookingId;
   int? adminId;
   int? mechanicId;
+  String? mechanicImage;
+  String? mechanicPhone;
   String? mechanicName;
   String? mechanicEmail;
   String? bookingTitle;
@@ -19,6 +21,8 @@ class BookingModel {
     this.bookingId,
     this.adminId,
     this.mechanicId,
+    this.mechanicImage,
+    this.mechanicPhone,
     this.mechanicName,
     this.mechanicEmail,
     this.bookingTitle,
@@ -38,6 +42,8 @@ class BookingModel {
     return BookingModel(
       bookingId: json['booking_id'],
       adminId: json['admin_id'],
+      mechanicImage: json['profile'],
+      mechanicPhone: json['mechanic_phone'],
       mechanicId: json['mechanic_id'],
       mechanicName: json['mechanic_name'],
       mechanicEmail: json['mechanic_email'],
@@ -60,6 +66,8 @@ class BookingModel {
       'booking_id': bookingId,
       'admin_id': adminId,
       'mechanic_id': mechanicId,
+      'profile' : mechanicImage,
+      'mechanic_phone' : mechanicPhone,
       'mechanic_name': mechanicName,
       'mechanic_email': mechanicEmail,
       'booking_title': bookingTitle,

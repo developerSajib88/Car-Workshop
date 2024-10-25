@@ -1,10 +1,7 @@
 import 'package:feature_first/common/widgets/components/background_container.dart';
 import 'package:feature_first/common/widgets/data_view_widget.dart';
 import 'package:feature_first/utils/constants/ui_constants.dart';
-import 'package:feature_first/utils/styles/color_palates.dart';
-import 'package:feature_first/utils/styles/custom_text_styles.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MechanicJobItemView extends StatelessWidget {
   final String customerName;

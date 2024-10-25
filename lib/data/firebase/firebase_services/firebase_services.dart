@@ -5,6 +5,9 @@ import 'package:feature_first/data/firebase/firbase_methods/firebase_methods.dar
 import 'package:feature_first/data/firebase/firebase_collections/firebase_collections.dart';
 import 'package:feature_first/data/model/booking_model.dart';
 import 'package:feature_first/data/model/user_model.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'dart:io';
+
 
 class FirebaseServices {
 
@@ -18,7 +21,7 @@ class FirebaseServices {
     QuerySnapshot querySnapshot = await collection.where("email", isEqualTo: email).limit(1).get();
     if (querySnapshot.docs.isNotEmpty) {
       CustomLog.errorPrint("Account already exists with the email: $email");
-      GlobalFunctions().showWarningToast("Account already exists with the email: $email");
+      GlobalFunctions.showWarningToast("Account already exists with the email: $email");
       return null;
     }
 
@@ -113,7 +116,6 @@ class FirebaseServices {
       List<BookingModel> bookings = querySnapshot.docs.map((doc) {
         return BookingModel.fromJson(doc.data() as Map<String, dynamic>);
       }).toList();
-
       return bookings;
     } catch (e) {
       CustomLog.errorPrint(e);
@@ -123,10 +125,48 @@ class FirebaseServices {
 
 
 
+  static Future<String?> uploadImageToFirebase(File image) async {
+    try {
+      final storageRef = FirebaseStorage.instance
+          .ref()
+          .child('profile_images/${DateTime.now().millisecondsSinceEpoch}.jpg');
+
+      await storageRef.putFile(image);
+
+      String downloadURL = await storageRef.getDownloadURL();
+      return downloadURL;
+    } catch (e) {
+      print('Error uploading image: $e');
+      return null;
+    }
+  }
 
 
+  static Future<UserModel?> updateUserInfo({
+    required int userId,
+    required CollectionReference collections,
+    required Map<String, dynamic> updatedData
+  }) async {
+    try {
+      QuerySnapshot querySnapshot = await collections.where("user_id", isEqualTo: userId).get();
 
+      if (querySnapshot.docs.isNotEmpty) {
+        DocumentSnapshot userDoc = querySnapshot.docs.first;
+        await collections.doc(userDoc.id).update(updatedData);
+        CustomLog.customPrinterGreen("User data updated successfully.");
 
+        DocumentSnapshot updatedDoc = await collections.doc(userDoc.id).get();
+        UserModel userModel = UserModel.fromJson(updatedDoc.data() as Map<String, dynamic>);
+        return userModel;
+      } else {
+        CustomLog.errorPrint("No user found with this userId.");
+        return null;
+      }
+    } catch (e) {
+      CustomLog.errorPrint(e);
+      return null;
+    }
+  }
 
 
 
