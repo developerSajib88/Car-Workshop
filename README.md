@@ -33,8 +33,8 @@
 *Welcome* | *SignIn* | *Registration*
 
 ![App Screenshot](https://github.com/developerSajib88/Project-Screenshots/blob/main/Car%20Workshop/screen_4.png) | ![App Screenshot](https://github.com/developerSajib88/Project-Screenshots/blob/main/Car%20Workshop/screen_5.png) | ![App Screenshot](https://github.com/developerSajib88/Project-Screenshots/blob/main/Car%20Workshop/screen_6.png) | ![App Screenshot](https://github.com/developerSajib88/Project-Screenshots/blob/main/Car%20Workshop/screen_11.png)
---- | --- | ---
-*Admin Dashboard* | *Booking Details* | *Create Bookings* | Assign Mechanic
+--- | --- | --- | ---
+*Admin Dashboard* | *Booking Details* | *Create Bookings* | *Assign Mechanic*
 
 
 ![App Screenshot](https://github.com/developerSajib88/Project-Screenshots/blob/main/Car%20Workshop/screen_7.png) | ![App Screenshot](https://github.com/developerSajib88/Project-Screenshots/blob/main/Car%20Workshop/screen_8.png) | ![App Screenshot](https://github.com/developerSajib88/Project-Screenshots/blob/main/Car%20Workshop/screen_9.png)
